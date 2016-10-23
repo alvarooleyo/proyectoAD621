@@ -29,6 +29,7 @@ public class Modelo extends DatabaseSQLite{
          res.close();
         }catch(SQLException e){
            System.err.println( e.getMessage() );
+           System.err.println("No entra aqui");
         }
         //se crea una matriz con tantas filas y columnas que necesite
         Object[][] data = new String[registros][3];
