@@ -5,10 +5,16 @@
  */
 package modelo;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alejandro
  */
-public class ModeloSQlite {
+public class ModeloSQlite extends DatabaseSQLite{
+    
     
 }

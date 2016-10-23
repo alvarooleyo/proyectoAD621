@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS Trabaja;
+CREATE TABLE Trabaja (
+bar INT(5) NOT NULL, 
+empleado VARCHAR(10) NOT NULL, 
+funcion VARCHAR(20) NOT NULL, 
+PRIMARY KEY (bar, empleado)
+);
+
+
+
+
+
