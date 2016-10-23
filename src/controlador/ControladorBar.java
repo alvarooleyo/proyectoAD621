@@ -32,6 +32,7 @@ public class ControladorBar implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableBar.setModel(this.modelo.getTablaBar());
+            this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
             
         } catch (Exception e) {
         }

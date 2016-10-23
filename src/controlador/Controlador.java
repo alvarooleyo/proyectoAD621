@@ -53,6 +53,12 @@ public class Controlador implements ActionListener, MouseListener {
         try {
             controladorBar = new ControladorBar(vistaTitular);
             controladorBar.iniciar();
+            controladorEmpleados = new ControladorEmpleados(vistaEmpleados);
+            controladorEmpleados.iniciar();
+            controladorInventario = new ControladorInventario(vistaInventario);
+            controladorInventario.iniciar();
+            controladorContabilidad = new ControladorContabilidad(vistaContabilidad);
+            controladorContabilidad.iniciar();
             } catch (Exception e) {
         }
             this.vista.setVisible(true);

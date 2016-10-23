@@ -81,7 +81,7 @@ public class TitularFrame extends javax.swing.JInternalFrame {
         jTextField17 = new javax.swing.JTextField();
         jTextField18 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableTitular = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jTextField19 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -361,7 +361,7 @@ public class TitularFrame extends javax.swing.JInternalFrame {
 
         jLabel18.setText("Domicilio :");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTitular.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -372,7 +372,7 @@ public class TitularFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableTitular);
 
         jLabel19.setText("Buscar :");
 
@@ -705,8 +705,8 @@ public class TitularFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     public javax.swing.JTable jTableBar;
+    public javax.swing.JTable jTableTitular;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;

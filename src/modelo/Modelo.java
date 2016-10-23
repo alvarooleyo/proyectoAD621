@@ -179,7 +179,7 @@ public class Modelo extends DatabaseSQLite{
         Object[][] data = new String[registros][7];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT numeroPedido, fechaPedido, codigoPedido, nombreProveedor, articulosPedido, cantidadArtiulos, precioTotal FROM Pedido");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT numeroPedido, fechaPedido, codigoPedido, nombreProveedor, articulosPedido, cantidadArticulos, precioTotal FROM Pedido");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
