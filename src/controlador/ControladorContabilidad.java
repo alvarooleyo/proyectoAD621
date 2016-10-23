@@ -5,10 +5,16 @@
  */
 package controlador;
 
+import vista.TitularFrame;
+
 /**
  *
  * @author Alejandro
  */
 public class ControladorContabilidad {
+
+    ControladorContabilidad(TitularFrame vistaTitular) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

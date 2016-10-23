@@ -27,6 +27,13 @@ public class Controlador implements ActionListener, MouseListener {
     TitularFrame vistaTitular= new TitularFrame();
     InventarioFrame vistaInventario= new InventarioFrame();
     ContabilidadFrame vistaContabilidad= new ContabilidadFrame();
+    
+    ControladorBar controladorBar;
+    ControladorContabilidad controladorContabilidad;
+    ControladorEmpleados controladorEmpleados;
+    ControladorInventario controladorInventario;
+    
+    
 
     public enum AccionMVC {
         btnTitularInicio,
@@ -42,6 +49,10 @@ public class Controlador implements ActionListener, MouseListener {
     
     public void iniciar() {
         try {
+            controladorBar = new ControladorBar(vistaTitular);
+            controladorBar.iniciar();
+            } catch (Exception e) {
+        }
             this.vista.setVisible(true);
             this.vista.btnTitularInicio.setActionCommand("btnTitularInicio");
             this.vista.btnTitularInicio.addActionListener(this);
@@ -51,8 +62,7 @@ public class Controlador implements ActionListener, MouseListener {
             this.vista.btnInventarioInicio.addActionListener(this);
             this.vista.btnContabilidadInicio.setActionCommand("btnContabilidadInicio");
             this.vista.btnContabilidadInicio.addActionListener(this);
-        } catch (Exception e) {
-        }
+        
     }
     @Override
     public void actionPerformed(ActionEvent e) {
