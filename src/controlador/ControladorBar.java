@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import modelo.ModeloSQLite;
+import modelo.Modelo;
 import vista.TitularFrame;
 
 /**
@@ -19,7 +19,7 @@ import vista.TitularFrame;
 public class ControladorBar implements ActionListener, MouseListener{
     
     TitularFrame vista= new TitularFrame();
-    ModeloSQLite modelo= new ModeloSQLite();
+    Modelo modelo= new Modelo();
 
     public enum AccionMVC{
     }

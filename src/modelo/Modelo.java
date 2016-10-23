@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alejandro
  */
-public class ModeloSQLite extends DatabaseSQLite{
+public class Modelo extends DatabaseSQLite{
     
     public DefaultTableModel getTablaBar(){
         
@@ -52,3 +52,4 @@ public class ModeloSQLite extends DatabaseSQLite{
         return tablemodel;
     }
 }
+

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import modelo.Modelo;
 import vista.ContabilidadFrame;
 import vista.EmpleadosFrame;
 import vista.Interface;
@@ -22,6 +23,7 @@ import vista.TitularFrame;
 public class Controlador implements ActionListener, MouseListener {
     
     Interface vista;
+    Modelo modelo= new Modelo();
     boolean incluidoTitular= false, incluidoEmpleqados= false, incluidoInventario=false, incluidoContabilidad=false;
     EmpleadosFrame vistaEmpleados= new EmpleadosFrame();
     TitularFrame vistaTitular= new TitularFrame();
