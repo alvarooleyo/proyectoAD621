@@ -28,7 +28,7 @@ public class DatabaseSQLite {
        }
     }
     
-    public Connection getConexion(){
+    public Connection getConnection(){
             return this.conexion;
         }
     }   
