@@ -5,16 +5,53 @@
  */
 package controlador;
 
-import vista.TitularFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import modelo.Modelo;
+import vista.InventarioFrame;
 
 /**
  *
  * @author Alejandro
  */
-public class ControladorInventario {
+public class ControladorInventario implements ActionListener, MouseListener{
+    
+    InventarioFrame vista= new InventarioFrame();
+    Modelo modelo= new Modelo();
 
-    ControladorInventario(TitularFrame vistaTitular) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public enum AccionMVC{
     }
     
+    public ControladorInventario(InventarioFrame vista){
+        this.vista=vista;
+    }
+    
+    public void iniciar() {
+        try {
+
+            this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
+            
+        } catch (Exception e) {
+        }
+    }
+    
+     @Override
+    public void actionPerformed(ActionEvent e) {}
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

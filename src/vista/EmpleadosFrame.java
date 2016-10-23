@@ -51,7 +51,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
         jTextField13 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTableEmpleados = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -172,7 +172,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Nombre :");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -183,7 +183,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTableEmpleados);
 
         jButton4.setText("Insertar");
 
@@ -326,7 +326,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    public javax.swing.JTable jTableEmpleados;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
