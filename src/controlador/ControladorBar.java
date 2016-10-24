@@ -188,31 +188,24 @@ public class ControladorBar implements ActionListener, MouseListener{
 
         fila = this.vista.jTableBar.getSelectedRow();
         String LicenciaBar = (String) this.vista.jTableBar.getValueAt(fila, 0);
-        String NombreBar = (String) this.vista.jTableBar.getValueAt(fila, 1);
-        String DomicilioBar = (String) this.vista.jTableBar.getValueAt(fila, 2);
-        String FechaBar = (String) this.vista.jTableBar.getValueAt(fila, 3);
-        String HorarioBar = (String) this.vista.jTableBar.getValueAt(fila, 4);
-        String DiasBar = (String) this.vista.jTableBar.getValueAt(fila, 5);
+        String[] Relleno = this.modelo.rellenarBar(LicenciaBar);
 
         this.vista.txtLicenciaBar.setText(LicenciaBar);
-        this.vista.txtNombreBar.setText(NombreBar);
-        this.vista.txtDomicilioBar.setText(DomicilioBar);
-        this.vista.txtFechaBar.setText(FechaBar);
-        this.vista.txtHorarioBar.setText(HorarioBar); 
-        this.vista.txtDiasBar.setText(DiasBar);
+        this.vista.txtNombreBar.setText(Relleno[0]);
+        this.vista.txtDomicilioBar.setText(Relleno[1]);
+        this.vista.txtFechaBar.setText(Relleno[2]);
+        this.vista.txtHorarioBar.setText(Relleno[3]); 
+        this.vista.txtDiasBar.setText(Relleno[4]);
     }
     
     private void jTableTitularMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila1 = this.vista.jTableBar.getSelectedRow();
-        String DNI = (String) this.vista.jTableBar.getValueAt(fila1, 0);
-        String Nombre = (String) this.vista.jTableBar.getValueAt(fila1, 1);
-        String Domicilio = (String) this.vista.jTableBar.getValueAt(fila1, 2);
-        
-
-        this.vista.txtDNI1Titular.setText(DNI);
-        this.vista.txtNombre1Titular.setText(Nombre);
-        this.vista.txtDomicilio1Titular.setText(Domicilio);
+        String dniTitular = (String) this.vista.jTableBar.getValueAt(fila1, 0);
+        String[] Relleno = this.modelo.rellenarTitular(dniTitular);
+        this.vista.txtDNI1Titular.setText(dniTitular);
+        this.vista.txtNombre1Titular.setText(Relleno[0]);
+        this.vista.txtDomicilio1Titular.setText(Relleno[1]);
     }
     
     @Override
