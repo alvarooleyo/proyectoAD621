@@ -5,9 +5,11 @@
  */
 package modelo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -344,5 +346,49 @@ public class Modelo extends DatabaseSQLite{
         }
         return tablemodel;
     }
+    
+   
+    public void insertarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
+          String z="insert into comercial values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void eliminarBar(String licenciaFiscal){
+        String q="delete from Bar where licenciaFiscal='"+licenciaFiscal+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void modificarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
+        String q="update comercial set nombreBar='"+nombreBar+"', domicilioBar='"+domicilioBar+"',fechaApertura='"+fechaApertura+"',horario='"+horario+"',diasApertura='"+diasApertura+"' where licenciaFiscal='"+licenciaFiscal+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+        
+    }
+    
+    
 }
 
