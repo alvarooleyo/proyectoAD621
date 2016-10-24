@@ -349,7 +349,7 @@ public class Modelo extends DatabaseSQLite{
     
    
     public void insertarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
-          String z="insert into comercial values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
+          String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
                      System.out.println(z);
 
           try{
@@ -376,7 +376,49 @@ public class Modelo extends DatabaseSQLite{
     }
     
     public void modificarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
-        String q="update comercial set nombreBar='"+nombreBar+"', domicilioBar='"+domicilioBar+"',fechaApertura='"+fechaApertura+"',horario='"+horario+"',diasApertura='"+diasApertura+"' where licenciaFiscal='"+licenciaFiscal+"'";
+        String q="update Bar set nombreBar='"+nombreBar+"', domicilioBar='"+domicilioBar+"',fechaApertura='"+fechaApertura+"',horario='"+horario+"',diasApertura='"+diasApertura+"' where licenciaFiscal='"+licenciaFiscal+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+        
+    }
+
+    
+    public void insertarPersona(String dniPersona,String nombrePersona,String domicilioPersona, String idBar){
+          String z="insert into Persona values ('"+dniPersona+"','"+nombrePersona+"','"+domicilioPersona+"','"+idBar+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void eliminarPersona(String dniPersona){
+        String q="delete from Persona where dniPersona='"+dniPersona+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void modificarPersona(String nombrePersona,String domicilioPersona, String idBar, String dniPersona){
+        String q="update Persona set nombrePersona='"+nombrePersona+"', domicilioPersona='"+domicilioPersona+"',idBar='"+idBar+"' where dniPersona='"+dniPersona+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -390,5 +432,87 @@ public class Modelo extends DatabaseSQLite{
     }
     
     
+    public void insertarEmpleado(String dniTitular,String nombreTitular,String domicilioTitular){
+          String z="insert into Empleado values ('"+dniTitular+"','"+nombreTitular+"','"+domicilioTitular+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void eliminarEmpleado(String dniTitular){
+        String q="delete from Empleado where dniPersona='"+dniTitular+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void modificarEmpleado(String nombreTitular,String domicilioTitular, String dniTitular){
+        String q="update Empleado set nombreTitular='"+nombreTitular+"', domicilioTitular='"+domicilioTitular+"' where dniTitular='"+dniTitular+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+         
+    }
+   
+    
+    public void insertarTitulares(String licenciaFiscal,String nombreBar,String domicilioBar, String fechaApertura, String horario, String diasApertura){
+          String z="insert into Titulares values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void eliminarTitulares(String licenciaFiscal){
+        String q="delete from Titulares where licenciaFiscal='"+licenciaFiscal+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void modificarTitulares(String licenciaFiscal,String nombreBar,String domicilioBar, String fechaApertura, String horario, String diasApertura){
+        String q="update Titulares set nombreBar='"+nombreBar+"', domicilioBar='"+domicilioBar+"', fechaApertura='"+fechaApertura+"', horario='"+horario+"', diasApertura='"+diasApertura+"' where licenciaFiscal='"+licenciaFiscal+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+         
+    }    
 }
 
