@@ -432,8 +432,8 @@ public class Modelo extends DatabaseSQLite{
     }
     
     
-    public void insertarEmpleado(String dniTitular,String nombreTitular,String domicilioTitular){
-          String z="insert into Empleado values ('"+dniTitular+"','"+nombreTitular+"','"+domicilioTitular+"')";
+    public void insertarEmpleado(String dniEmpleado,String nombreEmpleado,String domicilioEmpleado){
+          String z="insert into Empleado values ('"+dniEmpleado+"','"+nombreEmpleado+"','"+domicilioEmpleado+"')";
                      System.out.println(z);
 
           try{
@@ -447,8 +447,8 @@ public class Modelo extends DatabaseSQLite{
                  }
       }
     
-    public void eliminarEmpleado(String dniTitular){
-        String q="delete from Empleado where dniPersona='"+dniTitular+"'";
+    public void eliminarEmpleado(String dniEmpleado){
+        String q="delete from Empleado where dniPersona='"+dniEmpleado+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -459,8 +459,8 @@ public class Modelo extends DatabaseSQLite{
                  }
     }
     
-    public void modificarEmpleado(String nombreTitular,String domicilioTitular, String dniTitular){
-        String q="update Empleado set nombreTitular='"+nombreTitular+"', domicilioTitular='"+domicilioTitular+"' where dniTitular='"+dniTitular+"'";
+    public void modificarEmpleado(String nombreEmpleado,String domicilioEmpleado, String dniEmpleado){
+        String q="update Empleado set nombreTitular='"+nombreEmpleado+"', domicilioTitular='"+domicilioEmpleado+"' where dniTitular='"+dniEmpleado+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -474,8 +474,8 @@ public class Modelo extends DatabaseSQLite{
     }
    
     
-    public void insertarTitulares(String licenciaFiscal,String nombreBar,String domicilioBar, String fechaApertura, String horario, String diasApertura){
-          String z="insert into Titulares values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
+    public void insertarTitulares(String dniTitular,String nombreTitular,String domicilioTitular){
+          String z="insert into Titulares values ('"+dniTitular+"','"+nombreTitular+"','"+domicilioTitular+"')";
                      System.out.println(z);
 
           try{
@@ -489,8 +489,8 @@ public class Modelo extends DatabaseSQLite{
                  }
       }
     
-    public void eliminarTitulares(String licenciaFiscal){
-        String q="delete from Titulares where licenciaFiscal='"+licenciaFiscal+"'";
+    public void eliminarTitulares(String dniTitular){
+        String q="delete from Titulares where dniTitular='"+dniTitular+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -501,8 +501,8 @@ public class Modelo extends DatabaseSQLite{
                  }
     }
     
-    public void modificarTitulares(String licenciaFiscal,String nombreBar,String domicilioBar, String fechaApertura, String horario, String diasApertura){
-        String q="update Titulares set nombreBar='"+nombreBar+"', domicilioBar='"+domicilioBar+"', fechaApertura='"+fechaApertura+"', horario='"+horario+"', diasApertura='"+diasApertura+"' where licenciaFiscal='"+licenciaFiscal+"'";
+    public void modificarTitulares(String nombreTitular,String domicilioTitular, String dniTitular){
+        String q="update Titulares set noombreTitular='"+nombreTitular+"', domicilioTitular='"+domicilioTitular+"' where dniTitular='"+dniTitular+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -514,5 +514,48 @@ public class Modelo extends DatabaseSQLite{
                  }
          
     }    
+    
+ 
+    
+    public void insertarProducto(String codigoProducto,String nombreArticulo,String cantidadProducto, String precioCoste){
+          String z="insert into Producto values ('"+codigoProducto+"','"+nombreArticulo+"','"+cantidadProducto+"','"+precioCoste+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void eliminarProducto(String codigoProducto){
+        String q="delete from Producto where codigoProducto='"+codigoProducto+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void modificarProducto(String codigoProducto,String nombreArticulo,String cantidadProducto, String precioCoste){
+        String q="update Producto set nombreArticulo='"+nombreArticulo+"', cantidadProducto='"+cantidadProducto+"', precioCoste='"+precioCoste+"' where codigoProducto='"+codigoProducto+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+         
+    }   
 }
 
