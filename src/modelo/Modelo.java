@@ -347,6 +347,29 @@ public class Modelo extends DatabaseSQLite{
         return tablemodel;
     }
     
+    public String[] rellenarBar(String licenciaFiscal){     
+        String[] Relleno= new String[5];
+      try{
+         
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT nombreBar, domicilioBar, fechaApertura, horario, diasApertura");
+         ResultSet res = pstm.executeQuery();
+         
+         while(res.next()){ 
+            Relleno[0]= res.getString("nombreBar");
+            Relleno[1] = res.getString("domicilioBar");
+            Relleno[2]= res.getString("fechaApertura");
+            Relleno[3]= res.getString("horario");
+            Relleno[4]= res.getString("diasApertura");
+            
+            
+          
+         }           
+         res.close();
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return Relleno; 
+    }
    
     public void insertarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
           String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
