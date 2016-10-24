@@ -61,6 +61,17 @@ public class ControladorBar implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
         switch (AccionMVC.valueOf(e.getActionCommand())) {
             case btnInsertarBar:
+                try {
+                    String licenciaFiscal= this.vista.txtLicenciaBar.getText();
+                    String nombreBar= this.vista.txtNombreBar.getText();
+                    String domicilioBar= this.vista.txtDomicilioBar.getText();
+                    String fechaApertura= this.vista.txtFechaBar.getText();
+                    String horario= this.vista.txtHorarioBar.getText(); 
+                    String diasApertura= this.vista.txtHorarioBar.getText();                   
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 
                 break;
                 
@@ -69,7 +80,17 @@ public class ControladorBar implements ActionListener, MouseListener{
                 break;
                 
             case btnModificarBar:
-                
+                try {
+                    String licenciaFiscal= this.vista.txtLicenciaBar.getText();
+                    String nombreBar= this.vista.txtNombreBar.getText();
+                    String domicilioBar= this.vista.txtDomicilioBar.getText();
+                    String fechaApertura= this.vista.txtFechaBar.getText();
+                    String horario= this.vista.txtHorarioBar.getText(); 
+                    String diasApertura= this.vista.txtHorarioBar.getText();                   
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 break;
                 
             case btnModificarTitular:
@@ -77,7 +98,17 @@ public class ControladorBar implements ActionListener, MouseListener{
                 break;
                 
             case btnEliminarBar:
-                
+                try {
+                    String licenciaFiscal= this.vista.txtLicenciaBar.getText();
+                    String nombreBar= this.vista.txtNombreBar.getText();
+                    String domicilioBar= this.vista.txtDomicilioBar.getText();
+                    String fechaApertura= this.vista.txtFechaBar.getText();
+                    String horario= this.vista.txtHorarioBar.getText(); 
+                    String diasApertura= this.vista.txtHorarioBar.getText();                   
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 break;
                 
             case btnEliminarTitular:
