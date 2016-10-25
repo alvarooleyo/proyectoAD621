@@ -471,6 +471,46 @@ public class Modelo extends DatabaseSQLite{
         
     }
 
+    public void insertarContabilidad(int numeroPedido, Date fechaPedido, int codigoPedido, String nombreProveedor, String articuloPedido, int cantidadArticulos, double precioTotal){
+          String z="insert into Pedido values ('"+numeroPedido+"','"+fechaPedido+"','"+codigoPedido+"','"+nombreProveedor+"','"+articuloPedido+"','"+cantidadArticulos+"','"+precioTotal+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void modificarContabilidad(int numeroPedido, Date fechaPedido, int codigoPedido, String nombreProveedor, String articuloPedido, int cantidadArticulos, double precioTotal){
+        String q="update Pedido set fechaPedido='"+fechaPedido+"', codigoPedido='"+codigoPedido+"',nombreProveedor='"+nombreProveedor+"',articuloPedido='"+articuloPedido+"',cantidadArticulos='"+cantidadArticulos+"', precioTotal='"+precioTotal+"' where numeroPedido='"+numeroPedido+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+        
+    }
+    
+     public void eliminarContabilidad(int numeroPedido ){
+        String q="delete from Pedido where numeroPedido='"+numeroPedido+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
     
     public void insertarPersona(String dniPersona,String nombrePersona,String domicilioPersona, String idBar){
           String z="insert into Persona values ('"+dniPersona+"','"+nombrePersona+"','"+domicilioPersona+"','"+idBar+"')";
