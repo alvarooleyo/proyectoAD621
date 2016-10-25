@@ -429,6 +429,29 @@ public class Modelo extends DatabaseSQLite{
         }
         return Relleno; 
     }
+    
+    public String[] rellenarContabilidad(int numeroPedido){     
+        String[] Relleno= new String[6];
+      try{
+         
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT fechaPedido, codigoPedido, nombreProveedor, articulosPedido, cantidadArticulos, precioTotal from Pedido WHERE numeroPedido like '%"+numeroPedido+"%'");
+         ResultSet res = pstm.executeQuery();
+         
+         while(res.next()){ 
+            Relleno[0]= res.getString("fechaPedido");
+            Relleno[1] = res.getString("codigoPedido");  
+            Relleno[2] = res.getString("nombreProveedor");       
+            Relleno[3]= res.getString("articulosPedido");
+            Relleno[4] = res.getString("cantidadArticulos");  
+            Relleno[5] = res.getString("precioTotal");    
+          
+         }           
+         res.close();
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return Relleno; 
+    }
    
     public void insertarBar(String licenciaFiscal, String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
           String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";

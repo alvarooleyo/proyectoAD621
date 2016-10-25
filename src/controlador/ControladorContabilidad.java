@@ -46,6 +46,13 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.btnModificarContabilidad.addActionListener(this);
         this.vista.btnEliminarContabilidad.setActionCommand("btnEliminarContabilidad");
         this.vista.btnEliminarContabilidad.addActionListener(this);
+        
+        //----------------------Funciones de click de ratón sobre tablas---------------------
+        this.vista.jTableContabilidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableContabilidadMouseClicked(evt);
+            }
+        });        
     }
     
      @Override
@@ -112,12 +119,12 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         String numeroPedido = (String) this.vista.jTableContabilidad.getValueAt(fila, 0);
         String[] Relleno = this.modelo.rellenarInventario(numeroPedido);
         this.vista.txtNumeroContabilidad.setText(numeroPedido);
-        this.vista.txtFechaContabilidad.setText("");
-        this.vista.txtCodigoContabilidad.setText("");
-        this.vista.txtProveedorContabilidad.setText("");
-        this.vista.txtArticuloContabilidad.setText("");
-        this.vista.txtCantidadContabilidad.setText("");
-        this.vista.txtPrecioContabilidad.setText("");
+        this.vista.txtFechaContabilidad.setText(Relleno[0]);
+        this.vista.txtCodigoContabilidad.setText(Relleno[1]);
+        this.vista.txtProveedorContabilidad.setText(Relleno[2]);
+        this.vista.txtArticuloContabilidad.setText(Relleno[3]);
+        this.vista.txtCantidadContabilidad.setText(Relleno[4]);
+        this.vista.txtPrecioContabilidad.setText(Relleno[5]);
     }
     
     @Override
