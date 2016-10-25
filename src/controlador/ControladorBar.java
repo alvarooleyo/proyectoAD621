@@ -100,7 +100,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     String nombreTitular= this.vista.txtNombre1Titular.getText();
                     String domicilioTitular= this.vista.txtDomicilio1Titular.getText();
                     this.modelo.insertarTitulares(dniTitular, nombreTitular, domicilioTitular);
-                    this.vista.jTableTitular.setModel(this.modelo.getTablaBar());
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
                     LimpiarTitular();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -130,7 +130,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     String nombreTitular= this.vista.txtNombre1Titular.getText();
                     String domicilioTitular= this.vista.txtDomicilio1Titular.getText();   
                     this.modelo.modificarTitulares(nombreTitular, domicilioTitular, dniTitular);
-                    this.vista.jTableTitular.setModel(this.modelo.getTablaBar());
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
                     LimpiarTitular();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -158,7 +158,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     String dniTitular =this.vista.txtDNI1Titular.getText();
                     String nombreTitular= this.vista.txtNombre1Titular.getText();
                     String domicilioTitular= this.vista.txtDomicilio1Titular.getText();
-                    this.vista.jTableTitular.setModel(this.modelo.getTablaBar());
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
                     this.modelo.eliminarTitulares(dniTitular);
                     LimpiarTitular();
                 } catch (Exception ex) {
@@ -200,8 +200,8 @@ public class ControladorBar implements ActionListener, MouseListener{
     
     private void jTableTitularMouseClicked(java.awt.event.MouseEvent evt) {
 
-        fila1 = this.vista.jTableBar.getSelectedRow();
-        String dniTitular = (String) this.vista.jTableBar.getValueAt(fila1, 0);
+        fila1 = this.vista.jTableTitular.getSelectedRow();
+        String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila1, 0);
         String[] Relleno = this.modelo.rellenarTitular(dniTitular);
         this.vista.txtDNI1Titular.setText(dniTitular);
         this.vista.txtNombre1Titular.setText(Relleno[0]);

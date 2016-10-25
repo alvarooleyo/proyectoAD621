@@ -373,20 +373,15 @@ public class Modelo extends DatabaseSQLite{
     
    
     public String[] rellenarTitular(String dniTitular){     
-        String[] Relleno= new String[5];
+        String[] Relleno= new String[2];
       try{
          
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT nombreTitular, domicilioTitular from Bar WHERE dniTitular like '%"+dniTitular+"%'");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT nombreTitular, domicilioTitular from Titulares WHERE dniTitular like '%"+dniTitular+"%'");
          ResultSet res = pstm.executeQuery();
          
          while(res.next()){ 
-            Relleno[0]= res.getString("nombreBar");
-            Relleno[1] = res.getString("domicilioBar");
-            Relleno[2]= res.getString("fechaApertura");
-            Relleno[3]= res.getString("horario");
-            Relleno[4]= res.getString("diasApertura");
-            
-            
+            Relleno[0]= res.getString("nombreTitular");
+            Relleno[1] = res.getString("domicilioTitular");          
           
          }           
          res.close();
@@ -550,7 +545,7 @@ public class Modelo extends DatabaseSQLite{
     }
     
     public void modificarTitulares(String nombreTitular,String domicilioTitular, String dniTitular){
-        String q="update Titulares set noombreTitular='"+nombreTitular+"', domicilioTitular='"+domicilioTitular+"' where dniTitular='"+dniTitular+"'";
+        String q="update Titulares set nombreTitular='"+nombreTitular+"', domicilioTitular='"+domicilioTitular+"' where dniTitular='"+dniTitular+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
