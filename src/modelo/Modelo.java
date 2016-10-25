@@ -409,6 +409,26 @@ public class Modelo extends DatabaseSQLite{
         }
         return Relleno; 
     }
+    
+    public String[] rellenarInventario(String codigoProducto){     
+        String[] Relleno= new String[3];
+      try{
+         
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT nombreArticulo, cantidadProducto, precioCoste from Producto WHERE codigoProducto like '%"+codigoProducto+"%'");
+         ResultSet res = pstm.executeQuery();
+         
+         while(res.next()){ 
+            Relleno[0]= res.getString("nombreArticulo");
+            Relleno[1] = res.getString("cantidadProducto");  
+            Relleno[2] = res.getString("precioCoste");          
+          
+         }           
+         res.close();
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return Relleno; 
+    }
    
     public void insertarBar(String licenciaFiscal, String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
           String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";

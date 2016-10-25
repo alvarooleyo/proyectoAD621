@@ -18,10 +18,14 @@ import vista.InventarioFrame;
  */
 public class ControladorInventario implements ActionListener, MouseListener{
     
+    int fila=-1;
     InventarioFrame vista= new InventarioFrame();
     Modelo modelo= new Modelo();
 
     public enum AccionMVC{
+        btnInsertarProducto,
+        btnModificarProducto,
+        btnEliminarProducto
     }
     
     public ControladorInventario(InventarioFrame vista){
@@ -35,11 +39,84 @@ public class ControladorInventario implements ActionListener, MouseListener{
             
         } catch (Exception e) {
         }
+            this.vista.btnInsertarProducto.setActionCommand("btnInsertarProducto");
+            this.vista.btnInsertarProducto.addActionListener(this);
+            this.vista.btnModificarProducto.setActionCommand("btnModificarProducto");
+            this.vista.btnModificarProducto.addActionListener(this);
+            this.vista.btnEliminarProducto.setActionCommand("btnEliminarProducto");
+            this.vista.btnEliminarProducto.addActionListener(this);
+            
+            //----------------------Funciones de click de ratón sobre tablas---------------------
+        this.vista.jTableInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInventarioMouseClicked(evt);
+            }
+        });
     }
     
      @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+        switch (ControladorInventario.AccionMVC.valueOf(e.getActionCommand())) {
+            case btnInsertarProducto:
+                try {
+                    String codigoProducto= this.vista.txtCodigoProducto.getText();
+                    String nombreArticulo= this.vista.txtNombreProducto.getText();
+                    String cantidadProducto= this.vista.txtCantidadProducto.getText();
+                    String precioCoste= this.vista.txtPrecioProducto.getText();
+                    this.modelo.insertarProducto(codigoProducto, nombreArticulo, cantidadProducto, precioCoste);
+                    this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
+                    LimpiarInventario();
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+                
+            case btnModificarProducto:
+                try {
+                    String codigoProducto= this.vista.txtCodigoProducto.getText();
+                    String nombreArticulo= this.vista.txtNombreProducto.getText();
+                    String cantidadProducto= this.vista.txtCantidadProducto.getText();
+                    String precioCoste= this.vista.txtPrecioProducto.getText();
+                    this.modelo.modificarProducto(codigoProducto, nombreArticulo, cantidadProducto, precioCoste);
+                    this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
+                    LimpiarInventario();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+                
+            case btnEliminarProducto:
+                try {
+                    String codigoProducto= this.vista.txtCodigoProducto.getText();
+                    this.modelo.eliminarProducto(codigoProducto);
+                    this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
+                    LimpiarInventario();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+        }
+    }
 
+    public void LimpiarInventario(){
+        this.vista.txtCantidadProducto.setText("");
+        this.vista.txtCodigoProducto.setText("");
+        this.vista.txtNombreProducto.setText("");
+        this.vista.txtPrecioProducto.setText("");
+    }
+    //----------------------Permite la selección de elementos dentro de tablas---------------------------
+    private void jTableInventarioMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila = this.vista.jTableInventario.getSelectedRow();
+        String codigoProducto = (String) this.vista.jTableInventario.getValueAt(fila, 0);
+        String[] Relleno = this.modelo.rellenarInventario(codigoProducto);
+        this.vista.txtCodigoProducto.setText(codigoProducto);
+        this.vista.txtNombreProducto.setText(Relleno[0]);
+        this.vista.txtCantidadProducto.setText(Relleno[1]);
+        this.vista.txtPrecioProducto.setText(Relleno[2]);
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {}
 
