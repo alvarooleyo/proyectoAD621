@@ -18,10 +18,15 @@ import vista.EmpleadosFrame;
  */
 public class ControladorEmpleados implements ActionListener, MouseListener{
     
+    int fila = -1;
     EmpleadosFrame vista= new EmpleadosFrame();
     Modelo modelo= new Modelo();
 
     public enum AccionMVC{
+        
+        btnInsertarEmpleados,
+        btnModificarEmpleados,
+        btnEliminarEmpleados
     }
     
     public ControladorEmpleados(EmpleadosFrame vista){
@@ -35,11 +40,83 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
             
         } catch (Exception e) {
         }
+        
+        this.vista.btnInsertarEmpleados.setActionCommand("btnInsertarEmpleados");
+        this.vista.btnInsertarEmpleados.addActionListener(this);
+        this.vista.btnModificarEmpleados.setActionCommand("btnModificarEmpleados");
+        this.vista.btnModificarEmpleados.addActionListener(this);
+        this.vista.btnEliminarEmpleados.setActionCommand("btnEliminarEmpleados");
+        this.vista.btnEliminarEmpleados.addActionListener(this);
+        
+        //----------------------Funciones de click de ratón sobre tablas---------------------
+        this.vista.jTableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEmpleadosMouseClicked(evt);
+            }
+        });
     }
     
      @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+        switch (ControladorEmpleados.AccionMVC.valueOf(e.getActionCommand())) {
+            case btnInsertarEmpleados:
+                try {                
+                    String dniEmpleado= this.vista.txtDNIEmpleados.getText();
+                    String nombreEmpleado= this.vista.txtNombreEmpleados.getText();
+                    String domicilioEmpleado= this.vista.txtDomicilioEmpleados.getText();
+                    this.modelo.insertarEmpleado(dniEmpleado, nombreEmpleado, domicilioEmpleado);
+                    this.vista.jTableEmpleados.setModel(this.modelo.getTablaEmpleados());
+                    LimpiarEmpleados();
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }               
+                break;
+                
+            case btnModificarEmpleados:
+                try {
+                    String dniEmpleado= this.vista.txtDNIEmpleados.getText();
+                    String nombreEmpleado= this.vista.txtNombreEmpleados.getText();
+                    String domicilioEmpleado= this.vista.txtDomicilioEmpleados.getText();
+                    this.modelo.modificarEmpleado(nombreEmpleado, domicilioEmpleado, dniEmpleado);
+                    this.vista.jTableEmpleados.setModel(this.modelo.getTablaEmpleados());
+                    LimpiarEmpleados();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+                
+            case btnEliminarEmpleados:
+                try {     
+                    String dniEmpleado= this.vista.txtDNIEmpleados.getText();
+                    this.modelo.eliminarEmpleado(dniEmpleado);
+                    this.vista.jTableEmpleados.setModel(this.modelo.getTablaEmpleados());
+                    LimpiarEmpleados();
+                    
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+        }
+    }
 
+    public void LimpiarEmpleados(){
+        this.vista.txtDNIEmpleados.setText("");
+        this.vista.txtNombreEmpleados.setText("");
+        this.vista.txtDomicilioEmpleados.setText("");
+    }
+    
+    //----------------------Permite la selección de elementos dentro de tablas---------------------------
+    private void jTableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila = this.vista.jTableEmpleados.getSelectedRow();
+        String dniEmpleado = (String) this.vista.jTableEmpleados.getValueAt(fila, 0);
+        String[] Relleno = this.modelo.rellenarEmpleados(dniEmpleado);
+        this.vista.txtDNIEmpleados.setText(dniEmpleado);
+        this.vista.txtNombreEmpleados.setText(Relleno[0]);
+        this.vista.txtDomicilioEmpleados.setText(Relleno[1]);
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {}
 

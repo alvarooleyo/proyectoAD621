@@ -390,6 +390,25 @@ public class Modelo extends DatabaseSQLite{
         }
         return Relleno; 
     }
+    
+    public String[] rellenarEmpleados(String dniEmpleado){     
+        String[] Relleno= new String[2];
+      try{
+         
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT nombreEmpleado, domicilioEmpleado from Empleados WHERE dniEmpleado like '%"+dniEmpleado+"%'");
+         ResultSet res = pstm.executeQuery();
+         
+         while(res.next()){ 
+            Relleno[0]= res.getString("nombreEmpleado");
+            Relleno[1] = res.getString("domicilioEmpleado");          
+          
+         }           
+         res.close();
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return Relleno; 
+    }
    
     public void insertarBar(String licenciaFiscal, String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
           String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";
@@ -476,7 +495,7 @@ public class Modelo extends DatabaseSQLite{
     
     
     public void insertarEmpleado(String dniEmpleado,String nombreEmpleado,String domicilioEmpleado){
-          String z="insert into Empleado values ('"+dniEmpleado+"','"+nombreEmpleado+"','"+domicilioEmpleado+"')";
+          String z="insert into Empleados values ('"+dniEmpleado+"','"+nombreEmpleado+"','"+domicilioEmpleado+"')";
                      System.out.println(z);
 
           try{
@@ -491,7 +510,7 @@ public class Modelo extends DatabaseSQLite{
       }
     
     public void eliminarEmpleado(String dniEmpleado){
-        String q="delete from Empleado where dniPersona='"+dniEmpleado+"'";
+        String q="delete from Empleados where dniEmpleado='"+dniEmpleado+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
@@ -503,7 +522,7 @@ public class Modelo extends DatabaseSQLite{
     }
     
     public void modificarEmpleado(String nombreEmpleado,String domicilioEmpleado, String dniEmpleado){
-        String q="update Empleado set nombreTitular='"+nombreEmpleado+"', domicilioTitular='"+domicilioEmpleado+"' where dniTitular='"+dniEmpleado+"'";
+        String q="update Empleados set nombreEmpleado='"+nombreEmpleado+"', domicilioEmpleado='"+domicilioEmpleado+"' where dniEmpleado='"+dniEmpleado+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
