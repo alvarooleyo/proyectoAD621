@@ -21,6 +21,7 @@ public class ControladorBar implements ActionListener, MouseListener{
     
     int fila = -1;
     int fila1 = -1;
+    int fila2 = -1;
     TitularFrame vista= new TitularFrame();
     Modelo modelo= new Modelo();
 
@@ -42,6 +43,7 @@ public class ControladorBar implements ActionListener, MouseListener{
 
             this.vista.jTableBar.setModel(this.modelo.getTablaBar());
             this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
+            this.vista.jTableInfoBar.setModel(this.modelo.getTablaInfoBar());
             
             
         } catch (Exception e) {
@@ -202,6 +204,16 @@ public class ControladorBar implements ActionListener, MouseListener{
 
         fila1 = this.vista.jTableTitular.getSelectedRow();
         String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila1, 0);
+        String[] Relleno = this.modelo.rellenarTitular(dniTitular);
+        this.vista.txtDNI1Titular.setText(dniTitular);
+        this.vista.txtNombre1Titular.setText(Relleno[0]);
+        this.vista.txtDomicilio1Titular.setText(Relleno[1]);
+    }
+    
+    private void jTableInfoBarMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila2 = this.vista.jTableTitular.getSelectedRow();
+        String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila2, 0);
         String[] Relleno = this.modelo.rellenarTitular(dniTitular);
         this.vista.txtDNI1Titular.setText(dniTitular);
         this.vista.txtNombre1Titular.setText(Relleno[0]);

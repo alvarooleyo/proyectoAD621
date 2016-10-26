@@ -207,9 +207,9 @@ public class Modelo extends DatabaseSQLite{
         
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0; // Indica la cantidad de filas de la tabla.
-      String[] columNames = {"Licencia", "Nombre", "Domicilio"}; 
+      String[] columNames = {"DNI", "Licencia", "Empleo"}; 
       try{
-         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM TieneTitular");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
@@ -221,13 +221,13 @@ public class Modelo extends DatabaseSQLite{
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT licenciaFiscal, nombreBar, domicilioBar FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT dniPersona, bar, funcion FROM TieneTitular");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString("licenciaFiscal");
-                data[i][1] = res.getString("nombreBar");
-                data[i][2] = res.getString("domicilioBar");
+                data[i][0] = res.getString("dniPersona");
+                data[i][1] = res.getString("bar");
+                data[i][2] = res.getString("funcion");
             i++;
          }
          res.close();
@@ -243,9 +243,9 @@ public class Modelo extends DatabaseSQLite{
         
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0; // Indica la cantidad de filas de la tabla.
-      String[] columNames = {"Licencia", "Nombre", "Domicilio"}; 
+      String[] columNames = {"DNI", "Licencia", "Empleo"}; 
       try{
-         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM TieneEmpleados");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
@@ -257,13 +257,13 @@ public class Modelo extends DatabaseSQLite{
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT licenciaFiscal, nombreBar, domicilioBar FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT dniPersona, bar, funcion FROM TieneEmpleados");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString("licenciaFiscal");
-                data[i][1] = res.getString("nombreBar");
-                data[i][2] = res.getString("domicilioBar");
+                data[i][0] = res.getString("dniPersona");
+                data[i][1] = res.getString("bar");
+                data[i][2] = res.getString("funcion");
             i++;
          }
          res.close();
@@ -279,9 +279,9 @@ public class Modelo extends DatabaseSQLite{
         
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0; // Indica la cantidad de filas de la tabla.
-      String[] columNames = {"Licencia", "Nombre", "Domicilio"}; 
+      String[] columNames = {"Producto", "Bar"}; 
       try{
-         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Vende");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
@@ -290,16 +290,15 @@ public class Modelo extends DatabaseSQLite{
            System.err.println( e.getMessage() );
         }
         //se crea una matriz con tantas filas y columnas que necesite
-        Object[][] data = new String[registros][3];
+        Object[][] data = new String[registros][2];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT licenciaFiscal, nombreBar, domicilioBar FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT producto, bar FROM Vende");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString("licenciaFiscal");
-                data[i][1] = res.getString("nombreBar");
-                data[i][2] = res.getString("domicilioBar");
+                data[i][0] = res.getString("producto");
+                data[i][1] = res.getString("bar");
             i++;
          }
          res.close();
@@ -315,9 +314,9 @@ public class Modelo extends DatabaseSQLite{
         
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0; // Indica la cantidad de filas de la tabla.
-      String[] columNames = {"Licencia", "Nombre", "Domicilio"}; 
+      String[] columNames = {"Producto", "Pedido"}; 
       try{
-         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Genera");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
@@ -326,16 +325,15 @@ public class Modelo extends DatabaseSQLite{
            System.err.println( e.getMessage() );
         }
         //se crea una matriz con tantas filas y columnas que necesite
-        Object[][] data = new String[registros][3];
+        Object[][] data = new String[registros][2];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT licenciaFiscal, nombreBar, domicilioBar FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT producto, pedido FROM Bar");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString("licenciaFiscal");
-                data[i][1] = res.getString("nombreBar");
-                data[i][2] = res.getString("domicilioBar");
+                data[i][0] = res.getString("producto");
+                data[i][1] = res.getString("pedido");
             i++;
          }
          res.close();
