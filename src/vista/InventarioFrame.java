@@ -492,9 +492,9 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarEnlace;
+    public javax.swing.JButton btnEliminarEnlace;
     public javax.swing.JButton btnEliminarProducto;
-    private javax.swing.JButton btnInsertarEnlace;
+    public javax.swing.JButton btnInsertarEnlace;
     public javax.swing.JButton btnInsertarProducto;
     public javax.swing.JButton btnModificarProducto;
     private javax.swing.JLabel jLabel1;
@@ -525,9 +525,9 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTableEnlaceBar;
-    private javax.swing.JTable jTableEnlaceInfo;
-    private javax.swing.JTable jTableEnlaceProducto;
+    public javax.swing.JTable jTableEnlaceBar;
+    public javax.swing.JTable jTableEnlaceInfo;
+    public javax.swing.JTable jTableEnlaceProducto;
     public javax.swing.JTable jTableInventario;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
@@ -538,9 +538,9 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     public javax.swing.JTextField txtCantidadProducto;
     public javax.swing.JTextField txtCodigoProducto;
-    private javax.swing.JTextField txtLicenciaEnlace;
+    public javax.swing.JTextField txtLicenciaEnlace;
     public javax.swing.JTextField txtNombreProducto;
     public javax.swing.JTextField txtPrecioProducto;
-    private javax.swing.JTextField txtProductoEnlace;
+    public javax.swing.JTextField txtProductoEnlace;
     // End of variables declaration//GEN-END:variables
 }

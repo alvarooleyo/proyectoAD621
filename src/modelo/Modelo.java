@@ -343,7 +343,7 @@ public class Modelo extends DatabaseSQLite{
             System.err.println( e.getMessage() );
         }
         return tablemodel;
-    }
+    }  
     
     public String[] rellenarBar(String licenciaFiscal){     
         String[] Relleno= new String[5];
@@ -745,6 +745,33 @@ public class Modelo extends DatabaseSQLite{
     
     public void eliminarTieneEmpleados(String dniPersona, String bar){
         String q="delete from TieneEmpleados where dniPersona='"+dniPersona+"'and bar='"+bar+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void insertarVende(int producto, String bar){
+          String z="insert into Vende values ('"+producto+"','"+bar+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void eliminarVende(int producto, String bar){
+        String q="delete from Vende where producto='"+producto+"'and bar='"+bar+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
