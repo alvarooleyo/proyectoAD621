@@ -673,7 +673,7 @@ public class Modelo extends DatabaseSQLite{
                  JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
                  System.err.println( e.getMessage() );
                  }
-      }
+    }
     
     public void eliminarProducto(String codigoProducto){
         String q="delete from Producto where codigoProducto='"+codigoProducto+"'";
@@ -700,5 +700,32 @@ public class Modelo extends DatabaseSQLite{
                  }
          
     }   
+    
+    public void insertarTieneTitular(String dniPersona,String bar, String funcion){
+          String z="insert into TieneTitular values ('"+dniPersona+"','"+bar+"','"+funcion+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void eliminarTieneTitular(String dniPersona, String bar){
+        String q="delete from TieneTitular where dniPersona='"+dniPersona+"'and dniPersona='"+bar+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
 }
 

@@ -807,10 +807,10 @@ public class TitularFrame extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnEliminarBar;
-    private javax.swing.JButton btnEliminarEnlace;
+    public javax.swing.JButton btnEliminarEnlace;
     public javax.swing.JButton btnEliminarTitular;
     public javax.swing.JButton btnInsertarBar;
-    private javax.swing.JButton btnInsertarEnlace;
+    public javax.swing.JButton btnInsertarEnlace;
     public javax.swing.JButton btnInsertarTitular;
     public javax.swing.JButton btnModificarBar;
     public javax.swing.JButton btnModificarTitular;
@@ -895,10 +895,10 @@ public class TitularFrame extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtFechaBar;
     public javax.swing.JTextField txtHorarioBar;
     public javax.swing.JTextField txtLicenciaBar;
-    private javax.swing.JTextField txtLicenciaEnlace;
+    public javax.swing.JTextField txtLicenciaEnlace;
     public javax.swing.JTextField txtNombre1Titular;
     public javax.swing.JTextField txtNombreBar;
-    private javax.swing.JTextField txtOcupacionEnlace;
-    private javax.swing.JTextField txtTitularEnlace;
+    public javax.swing.JTextField txtOcupacionEnlace;
+    public javax.swing.JTextField txtTitularEnlace;
     // End of variables declaration//GEN-END:variables
 }
