@@ -5,18 +5,10 @@
  */
 package controlador;
 
-import vista.Inicio;
-import vista.Interface;
-
 /**
  *
  * @author Alejandro
  */
-public class main {
+public class ControladorSQL {
     
-    public static void main(String[] args) {
-        
-        new ControladorInicio(new Inicio()).iniciar();
-        //new Controlador(new Interface()).iniciar();
-    }
 }

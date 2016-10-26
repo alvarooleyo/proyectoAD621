@@ -28,19 +28,19 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSQL = new javax.swing.JButton();
+        btnSQLite = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 0, -1, 649));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\f3a3aebd3269210c55d5b2cca19914fc.png")); // NOI18N
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 440, 308));
+        btnSQL.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\f3a3aebd3269210c55d5b2cca19914fc.png")); // NOI18N
+        getContentPane().add(btnSQL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 440, 308));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\rib.png")); // NOI18N
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 41, 450, 380));
+        btnSQLite.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\rib.png")); // NOI18N
+        getContentPane().add(btnSQLite, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 41, 450, 380));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\fondo2.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
@@ -84,8 +84,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton btnSQL;
+    public javax.swing.JButton btnSQLite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
