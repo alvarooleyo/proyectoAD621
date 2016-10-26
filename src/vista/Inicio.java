@@ -36,13 +36,13 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 0, -1, 649));
 
-        btnSQL.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\f3a3aebd3269210c55d5b2cca19914fc.png")); // NOI18N
+        btnSQL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/f3a3aebd3269210c55d5b2cca19914fc.png"))); // NOI18N
         getContentPane().add(btnSQL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 440, 308));
 
-        btnSQLite.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\rib.png")); // NOI18N
+        btnSQLite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rib.png"))); // NOI18N
         getContentPane().add(btnSQLite, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 41, 450, 380));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro\\Documents\\NetBeansProjects\\IE_6.2.1\\proyectoAD621\\img\\fondo2.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo2.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
 
         pack();

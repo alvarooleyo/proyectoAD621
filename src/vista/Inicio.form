@@ -34,7 +34,7 @@
     <Component class="javax.swing.JButton" name="btnSQL">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Alejandro\Documents\NetBeansProjects\IE_6.2.1\proyectoAD621\img\f3a3aebd3269210c55d5b2cca19914fc.png"/>
+          <Image iconType="3" name="/img/f3a3aebd3269210c55d5b2cca19914fc.png"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -49,7 +49,7 @@
     <Component class="javax.swing.JButton" name="btnSQLite">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Alejandro\Documents\NetBeansProjects\IE_6.2.1\proyectoAD621\img\rib.png"/>
+          <Image iconType="3" name="/img/rib.png"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -64,7 +64,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Alejandro\Documents\NetBeansProjects\IE_6.2.1\proyectoAD621\img\fondo2.jpg"/>
+          <Image iconType="3" name="/img/fondo2.jpg"/>
         </Property>
       </Properties>
       <Constraints>
