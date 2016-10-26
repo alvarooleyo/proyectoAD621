@@ -20,7 +20,7 @@ import vista.TitularFrame;
  *
  * @author Alejandro
  */
-public class ControladorSQL implements ActionListener, MouseListener {
+public class ControlarSQL implements ActionListener, MouseListener {
     
     Interface vista;
     ModeloSQL modelo= new ModeloSQL();
@@ -43,7 +43,7 @@ public class ControladorSQL implements ActionListener, MouseListener {
         btnContabilidadInicio
     }
     
-    public ControladorSQL(Interface vista) {
+    public ControlarSQL(Interface vista) {
         this.vista = vista;
 
     }
