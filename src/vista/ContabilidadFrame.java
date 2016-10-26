@@ -36,7 +36,7 @@ public class ContabilidadFrame extends javax.swing.JInternalFrame {
         jTextField22 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableInfoContabilidad = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
         jTextField26 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -117,7 +117,7 @@ public class ContabilidadFrame extends javax.swing.JInternalFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInfoContabilidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -128,7 +128,7 @@ public class ContabilidadFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableInfoContabilidad);
 
         jLabel26.setText("Buscar :");
 
@@ -547,11 +547,11 @@ public class ContabilidadFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
     public javax.swing.JTable jTableContabilidad;
     public javax.swing.JTable jTableEnlaceInfo;
     public javax.swing.JTable jTableEnlacePedido;
     public javax.swing.JTable jTableEnlaceProducto;
+    public javax.swing.JTable jTableInfoContabilidad;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;

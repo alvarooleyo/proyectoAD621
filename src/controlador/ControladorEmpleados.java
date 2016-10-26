@@ -45,6 +45,8 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
             this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoEmpleados());
             this.vista.jTableEnlaceEmpleados.setModel(this.modelo.getTablaEmpleados());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
+            this.vista.jTableInfoEmpleados.setModel(this.modelo.getTablaInfoEmpleados());
+            
         } catch (Exception e) {
         }
         

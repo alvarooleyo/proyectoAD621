@@ -36,7 +36,7 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
         jTextField21 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableInfoInventario = new javax.swing.JTable();
         jLabel25 = new javax.swing.JLabel();
         jTextField25 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -113,7 +113,7 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInfoInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,7 +124,7 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableInfoInventario);
 
         jLabel25.setText("Buscar :");
 
@@ -524,10 +524,10 @@ public class InventarioFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     public javax.swing.JTable jTableEnlaceBar;
     public javax.swing.JTable jTableEnlaceInfo;
     public javax.swing.JTable jTableEnlaceProducto;
+    public javax.swing.JTable jTableInfoInventario;
     public javax.swing.JTable jTableInventario;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;

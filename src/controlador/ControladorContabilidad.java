@@ -46,6 +46,7 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
             this.vista.jTableEnlacePedido.setModel(this.modelo.getTablaContabilidad());
             this.vista.jTableEnlaceProducto.setModel(this.modelo.getTablaProductos());
             this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoContabilidad());
+            this.vista.jTableInfoContabilidad.setModel(this.modelo.getTablaInfoContabilidad());
             
         } catch (Exception e) {
         }

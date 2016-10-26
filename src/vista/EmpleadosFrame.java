@@ -37,7 +37,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTableInfoEmpleados = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -85,7 +85,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Ocupacón :");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInfoEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -96,7 +96,7 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTableInfoEmpleados);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -517,11 +517,11 @@ public class EmpleadosFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     public javax.swing.JTable jTableEmpleados;
     public javax.swing.JTable jTableEnlaceBar;
     public javax.swing.JTable jTableEnlaceEmpleados;
     public javax.swing.JTable jTableEnlaceInfo;
+    public javax.swing.JTable jTableInfoEmpleados;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;

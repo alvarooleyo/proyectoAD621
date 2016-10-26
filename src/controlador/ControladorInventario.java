@@ -45,6 +45,7 @@ public class ControladorInventario implements ActionListener, MouseListener{
             this.vista.jTableEnlaceProducto.setModel(this.modelo.getTablaProductos());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
             this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoProductos());
+            this.vista.jTableInfoInventario.setModel(this.modelo.getTablaInfoProductos());
                     
         } catch (Exception e) {
         }
