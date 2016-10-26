@@ -328,7 +328,7 @@ public class Modelo extends DatabaseSQLite{
         Object[][] data = new String[registros][2];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT producto, pedido FROM Bar");
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT producto, pedido FROM Genera");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
@@ -772,6 +772,33 @@ public class Modelo extends DatabaseSQLite{
     
     public void eliminarVende(int producto, String bar){
         String q="delete from Vende where producto='"+producto+"'and bar='"+bar+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void insertarGenera(int producto, int pedido){
+          String z="insert into Genera values ('"+producto+"','"+pedido+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void eliminarGenera(int producto, int pedido){
+        String q="delete from Genera where producto='"+producto+"'and pedido='"+pedido+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();

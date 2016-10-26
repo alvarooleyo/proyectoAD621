@@ -19,14 +19,20 @@ import vista.ContabilidadFrame;
  */
 public class ControladorContabilidad implements ActionListener, MouseListener{
     
-    int fila=-1;
+    int fila = -1;
+    int fila1 = -1;
+    int fila2 = -1;
+    int fila3= -1;
+    int fila4= -1;
     ContabilidadFrame vista= new ContabilidadFrame();
     Modelo modelo= new Modelo();
 
     public enum AccionMVC{
         btnInsertarContabilidad,
         btnModificarContabilidad,
-        btnEliminarContabilidad
+        btnEliminarContabilidad,
+        btnInsertarEnlace,
+        btnEliminarEnlace
     }
     
     public ControladorContabilidad(ContabilidadFrame vista){
@@ -37,6 +43,9 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
+            this.vista.jTableEnlacePedido.setModel(this.modelo.getTablaContabilidad());
+            this.vista.jTableEnlaceProducto.setModel(this.modelo.getTablaProductos());
+            this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoContabilidad());
             
         } catch (Exception e) {
         }
@@ -46,6 +55,10 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.btnModificarContabilidad.addActionListener(this);
         this.vista.btnEliminarContabilidad.setActionCommand("btnEliminarContabilidad");
         this.vista.btnEliminarContabilidad.addActionListener(this);
+        this.vista.btnInsertarEnlace.setActionCommand("btnInsertarEnlace");
+        this.vista.btnInsertarEnlace.addActionListener(this);
+        this.vista.btnEliminarEnlace.setActionCommand("btnEliminarEnlace");
+        this.vista.btnEliminarEnlace.addActionListener(this);
         
         //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableContabilidad.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -53,6 +66,16 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
                 jTableContabilidadMouseClicked(evt);
             }
         });        
+        this.vista.jTableEnlaceProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnlaceProductoMouseClicked(evt);
+            }
+        });  
+        this.vista.jTableEnlacePedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnlacePedidoMouseClicked(evt);
+            }
+        });  
     }
     
      @Override
@@ -100,6 +123,30 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
                 } catch (Exception ex) {
                 }
                 break;
+            
+            case btnInsertarEnlace:
+                try {
+                    int producto= Integer.parseInt(this.vista.txtProductoEnlace.getText());
+                    int pedido= Integer.parseInt(this.vista.txtPedidoEnlace.getText());        
+                    this.modelo.insertarGenera(producto, pedido);
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoContabilidad());
+                    LimpiarEnlace();
+                    
+                } catch (Exception ex) {
+                }
+                break;
+                
+            case btnEliminarEnlace:
+                try {
+                    int producto= Integer.parseInt(this.vista.txtProductoEnlace.getText());
+                    int pedido= Integer.parseInt(this.vista.txtPedidoEnlace.getText());        
+                    this.modelo.eliminarGenera(producto, pedido);
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoContabilidad());
+                    LimpiarEnlace();
+                } catch (Exception ex) {
+                }
+                break;
+        
         }
     }
     
@@ -111,6 +158,11 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.txtArticuloContabilidad.setText("");
         this.vista.txtCantidadContabilidad.setText("");
         this.vista.txtPrecioContabilidad.setText("");
+    }
+    
+    public void LimpiarEnlace(){
+        this.vista.txtProductoEnlace.setText("");
+        this.vista.txtPedidoEnlace.setText("");
     }
     
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,6 +177,20 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.txtArticuloContabilidad.setText(Relleno[3]);
         this.vista.txtCantidadContabilidad.setText(Relleno[4]);
         this.vista.txtPrecioContabilidad.setText(Relleno[5]);
+    }
+    
+    private void jTableEnlaceProductoMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila3 = this.vista.jTableEnlaceProducto.getSelectedRow();
+        String producto = (String) this.vista.jTableEnlaceProducto.getValueAt(fila3, 0);
+        this.vista.txtProductoEnlace.setText(producto);
+    }
+    
+    private void jTableEnlacePedidoMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila4 = this.vista.jTableEnlacePedido.getSelectedRow();
+        String pedido = (String) this.vista.jTableEnlacePedido.getValueAt(fila4, 0);
+        this.vista.txtPedidoEnlace.setText(pedido);
     }
     
     @Override
