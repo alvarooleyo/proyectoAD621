@@ -717,7 +717,34 @@ public class Modelo extends DatabaseSQLite{
     }
     
     public void eliminarTieneTitular(String dniPersona, String bar){
-        String q="delete from TieneTitular where dniPersona='"+dniPersona+"'and dniPersona='"+bar+"'";
+        String q="delete from TieneTitular where dniPersona='"+dniPersona+"'and bar='"+bar+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void insertarTieneEmpleados(String dniPersona,String bar, String funcion){
+          String z="insert into TieneEmpleados values ('"+dniPersona+"','"+bar+"','"+funcion+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void eliminarTieneEmpleados(String dniPersona, String bar){
+        String q="delete from TieneEmpleados where dniPersona='"+dniPersona+"'and bar='"+bar+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
