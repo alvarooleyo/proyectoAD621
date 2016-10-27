@@ -97,7 +97,7 @@ public class ModeloSQL extends DatabaseSQL{
          return tablemodel;
     }
     
-    public DefaultTableModel getTablaTitular() {
+    public DefaultTableModel getTablaPersona() {
         DefaultTableModel tabla = new DefaultTableModel();
         Object[] columName = null;
         Object[][] data = null;
@@ -147,31 +147,54 @@ public class ModeloSQL extends DatabaseSQL{
         return tabla;
     }
     
-    public DefaultTableModel getTablaEmpleados() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
+    public DefaultTableModel getTablaProductos() {
+        DefaultTableModel tabla = new DefaultTableModel();
+        Object[] columName = null;
+        Object[][] data = null;
         int registros = 0;
-        String[] columNames = {"DNI", "Nombre", "Domicilio"}; 
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("{call consultaPersona()}");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[3];
-            while(!res.isAfterLast()){
-                fila[0]= res.getString("dniEmpleado");
-                fila[1]= res.getString("nombreEmpleado");
-                fila[2]= res.getString("domicilioEmpleado");
-                
-                tablemodel.addRow(fila);
-                res.next();
+        try {
+            //llamamos a la funcion almacenada en la base de datos
+            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalProductos}");
+            //detallamos que la variable de salida va a ser de tipo Integer
+            pstm.registerOutParameter(1, Types.INTEGER);
+            //ejecutamos la llamada a la funcion
+            pstm.executeUpdate();
+            //recuperamos el resultado y lo asignamos a una variable 
+            registros = pstm.getInt(1);
+        } catch (SQLException ex) {
+
+        }
+
+        try {
+            //Preparas la llamada al procedimiento que te devuelve la consulta
+            CallableStatement cstm = this.getConexion().prepareCall("{call consultaProducto()}");
+            //Ejecutas el procedimiento
+            ResultSet re = cstm.executeQuery();
+            //Recoges los metadatos que te devuelve la consulta
+            ResultSetMetaData rsp = re.getMetaData();
+
+            int col = rsp.getColumnCount();
+            columName = new String[col];
+
+            for (int i = 1; i <= col; i++) {
+                columName[i - 1] = rsp.getColumnName(i);
             }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
+            data = new String[registros][col];
+
+            int j = 0;
+            while (re.next()) {
+                for (int h = 0; h < col; h++) {
+                    data[j][h] = re.getString(columName[h].toString());
+                }
+                j++;
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        tabla.setDataVector(data, columName);
+        return tabla;
     }
     
     public DefaultTableModel getTablaInfoEmpleados() throws SQLException {
@@ -200,77 +223,67 @@ public class ModeloSQL extends DatabaseSQL{
          }
          return tablemodel;
     }
-    
-    public DefaultTableModel getTablaProductos() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
+    public DefaultTableModel getTablaContabilidad() {
+        DefaultTableModel tabla = new DefaultTableModel();
+        Object[] columName = null;
+        Object[][] data = null;
         int registros = 0;
-        String[] columNames = {"Código", "Nombre", "Cantidad","Precio"}; 
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("{call consultaProducto()}");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[3];
-            while(!res.isAfterLast()){
-                fila[0]= res.getString("codigoProducto");
-                fila[1]= res.getString("nombreArticulo");
-                fila[2]= res.getString("cantidadProducto");
-                fila[3]= res.getString("precioCoste");
-                
-                tablemodel.addRow(fila);
-                res.next();
+        try {
+            //llamamos a la funcion almacenada en la base de datos
+            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalPedidos}");
+            //detallamos que la variable de salida va a ser de tipo Integer
+            pstm.registerOutParameter(1, Types.INTEGER);
+            //ejecutamos la llamada a la funcion
+            pstm.executeUpdate();
+            //recuperamos el resultado y lo asignamos a una variable 
+            registros = pstm.getInt(1);
+        } catch (SQLException ex) {
+
+        }
+
+        try {
+            //Preparas la llamada al procedimiento que te devuelve la consulta
+            CallableStatement cstm = this.getConexion().prepareCall("{call consultaPedido()}");
+            //Ejecutas el procedimiento
+            ResultSet re = cstm.executeQuery();
+            //Recoges los metadatos que te devuelve la consulta
+            ResultSetMetaData rsp = re.getMetaData();
+
+            int col = rsp.getColumnCount();
+            columName = new String[col];
+
+            for (int i = 1; i <= col; i++) {
+                columName[i - 1] = rsp.getColumnName(i);
             }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
+            data = new String[registros][col];
+
+            int j = 0;
+            while (re.next()) {
+                for (int h = 0; h < col; h++) {
+                    data[j][h] = re.getString(columName[h].toString());
+                }
+                j++;
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        tabla.setDataVector(data, columName);
+        return tabla;
     }
     
-    public DefaultTableModel getTablaContabilidad() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
-        int registros = 0;
-        String[] columNames = {"Número", "Fecha", "Codigo", "Nombre", "Artículos", "Cantidad", "Precio"}; 
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("{call consultaPedido()}");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[7];
-            while(!res.isAfterLast()){
-                fila[0] = res.getString("numeroPedido");
-                fila[1] = res.getString("fechaPedido");
-                fila[2] = res.getString("codigoPedido");
-                fila[3] = res.getString("nombreProveedor");
-                fila[4] = res.getString("articulosPedido");
-                fila[5] = res.getString("cantidadArticulos");
-                fila[6] = res.getString("precioTotal");
-                
-                tablemodel.addRow(fila);
-                res.next();
-            }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
-    }
-    
-    public int insertarBar(String licenciaFiscal, String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
+    public int insertarBar(String licenciaF, String nombreB,String domicilioB,Date fechaA, String horarioA, String diasA){
         int aux=0;
         try {
             CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertBar(?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,licenciaFiscal);
-            cStmt.setString(3, nombreBar);
-            cStmt.setString(4, domicilioBar);
-            cStmt.setDate(5, fechaApertura);
-            cStmt.setString(6, horario);
-            cStmt.setString(7, diasApertura);
+            cStmt.setString(2,licenciaF);
+            cStmt.setString(3, nombreB);
+            cStmt.setString(4, domicilioB);
+            cStmt.setDate(5, fechaA);
+            cStmt.setString(6, horarioA);
+            cStmt.setString(7, diasA);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -364,17 +377,17 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int modificarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
+    public int modificarBar(String licenciaF,String nombreB,String domicilioB,Date fechaA, String horarioA, String diasA){
         int resultado=-1;
         try {
         CallableStatement cStmt= this.getConexion().prepareCall("{?= call updateBar(?,?,?,?,?,?)}");
         cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-        cStmt.setString(2,licenciaFiscal);
-        cStmt.setString(3, nombreBar);
-        cStmt.setString(4, domicilioBar);
-        cStmt.setDate(5, fechaApertura);
-        cStmt.setString(6, horario);
-        cStmt.setString(7, diasApertura);
+        cStmt.setString(2,licenciaF);
+        cStmt.setString(3, nombreB);
+        cStmt.setString(4, domicilioB);
+        cStmt.setDate(5, fechaA);
+        cStmt.setString(6, horarioA);
+        cStmt.setString(7, diasA);
         cStmt.execute();
         resultado= cStmt.getInt(1);
         } catch (SQLException ex) {
@@ -450,12 +463,12 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int eliminarBar(String licenciaFiscal){
+    public int eliminarBar(String licenciaF){
         int resultado=-1;
         try {
         CallableStatement cStmt= this.getConexion().prepareCall("{?= call deleteBar(?)}");
         cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-        cStmt.setString(2,licenciaFiscal);
+        cStmt.setString(2,licenciaF);
         cStmt.execute();
         resultado= cStmt.getInt(1);
         } catch (SQLException ex) {
