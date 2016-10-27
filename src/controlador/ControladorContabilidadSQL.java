@@ -73,14 +73,14 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         switch (ControladorContabilidad.AccionMVC.valueOf(e.getActionCommand())) {
             case btnInsertarContabilidad:
                 try {
-                    int numeroPedido=Integer.parseInt(this.vista.txtNumeroContabilidad.getText());
-                    Date fechaPed= Date.valueOf(this.vista.txtFechaContabilidad.getText());
+                    String fechaPed= this.vista.txtFechaContabilidad.getText();
                     int codigoPed= Integer.parseInt(this.vista.txtCodigoContabilidad.getText());
                     String nombreProv= this.vista.txtProveedorContabilidad.getText();
                     String nombreArt= this.vista.txtArticuloContabilidad.getText();
                     int cantidadArt= Integer.parseInt(this.vista.txtCantidadContabilidad.getText());
                     double precioTot= Double.parseDouble(this.vista.txtPrecioContabilidad.getText());
-                    this.modelo.insertarPedido(fechaPed, codigoPed, nombreProv, nombreArt, cantidadArt, precioTot);
+                    int codProd = Integer.parseInt(this.vista.txtCodProd.getText());
+                    this.modelo.insertarPedido(fechaPed, codigoPed, nombreProv, nombreArt, cantidadArt, precioTot, codProd);
                     this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
                     LimpiarCotabilidad();
                     
@@ -91,7 +91,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
             case btnModificarContabilidad:
                 try {
                     int numeroPedido=Integer.parseInt(this.vista.txtNumeroContabilidad.getText());
-                    Date fechaPed= Date.valueOf(this.vista.txtFechaContabilidad.getText());
+                    String fechaPed= this.vista.txtFechaContabilidad.getText();
                     int codigoPed= Integer.parseInt(this.vista.txtCodigoContabilidad.getText());
                     String nombreProv= this.vista.txtProveedorContabilidad.getText();
                     String nombreArt= this.vista.txtArticuloContabilidad.getText();

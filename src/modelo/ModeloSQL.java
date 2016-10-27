@@ -365,17 +365,18 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int insertarPedido(Date fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
+    public int insertarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot, int codProd){
         int aux=0;
         try {
-            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertPedido(?,?,?,?,?,?)}");
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertPedido(?,?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setDate(2,fechaPed);
+            cStmt.setString(2,fechaPed);
             cStmt.setInt(3, codigoPed);
             cStmt.setString(4, nombreProv);
             cStmt.setString(5,nombreArt);
             cStmt.setInt(6, cantidadArt);
             cStmt.setDouble(7, precioTot);
+            cStmt.setInt(8, codProd);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -452,12 +453,12 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int modificarPedido(Date fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
+    public int modificarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
         int aux=0;
         try {
             CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setDate(2,fechaPed);
+            cStmt.setString(2,fechaPed);
             cStmt.setInt(3, codigoPed);
             cStmt.setString(4, nombreProv);
             cStmt.setString(5,nombreArt);
