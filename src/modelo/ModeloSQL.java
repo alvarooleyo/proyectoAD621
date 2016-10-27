@@ -70,31 +70,54 @@ public class ModeloSQL extends DatabaseSQL{
         return tabla;
     }
     
-    public DefaultTableModel getTablaInfoBar() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
+    public DefaultTableModel getTablaInfoBar() {
+        DefaultTableModel tabla = new DefaultTableModel();
+        Object[] columName = null;
+        Object[][] data = null;
         int registros = 0;
-        String[] columNames = {"DNI", "Licencia", "Empleo"}; 
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("{call consultaFunciones()}");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[3];
-            while(!res.isAfterLast()){
-                fila[0]= res.getString("dniPersona");
-                fila[1]= res.getString("bar");
-                fila[2]= res.getString("funcion");
-                
-                tablemodel.addRow(fila);
-                res.next();
+        try {
+            //llamamos a la funcion almacenada en la base de datos
+            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalFunciones}");
+            //detallamos que la variable de salida va a ser de tipo Integer
+            pstm.registerOutParameter(1, Types.INTEGER);
+            //ejecutamos la llamada a la funcion
+            pstm.executeUpdate();
+            //recuperamos el resultado y lo asignamos a una variable 
+            registros = pstm.getInt(1);
+        } catch (SQLException ex) {
+
+        }
+
+        try {
+            //Preparas la llamada al procedimiento que te devuelve la consulta
+            CallableStatement cstm = this.getConexion().prepareCall("{call consultaFunciones()}");
+            //Ejecutas el procedimiento
+            ResultSet re = cstm.executeQuery();
+            //Recoges los metadatos que te devuelve la consulta
+            ResultSetMetaData rsp = re.getMetaData();
+
+            int col = rsp.getColumnCount();
+            columName = new String[col];
+
+            for (int i = 1; i <= col; i++) {
+                columName[i - 1] = rsp.getColumnName(i);
             }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
+            data = new String[registros][col];
+
+            int j = 0;
+            while (re.next()) {
+                for (int h = 0; h < col; h++) {
+                    data[j][h] = re.getString(columName[h].toString());
+                }
+                j++;
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+        tabla.setDataVector(data, columName);
+        return tabla;
     }
     
     public DefaultTableModel getTablaPersona() {
@@ -292,16 +315,16 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int insertarInfoBar(String dni, String bar, boolean esTitular, String funcion){
+    public int insertarInfoBar(String dniPer, String LicenciaFis, boolean esTit, String funcionTra){
         int aux=0;
         try {
-            String sql="?= call insertPersona(?,?,?,?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertNuevoPuesto(?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,dni);
-            cStmt.setString(3, bar);
-            cStmt.setBoolean(4, esTitular);
-            cStmt.setString(5, funcion);
+            cStmt.setString(2,dniPer);
+            cStmt.setString(3, LicenciaFis);
+            cStmt.setBoolean(4, esTit);
+            cStmt.setString(5, funcionTra);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -529,6 +552,22 @@ public class ModeloSQL extends DatabaseSQL{
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cStmt.setString(2,idB);
             cStmt.setDate(3, fechaRec);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int eliminarInfoBar(String dniPer, String licenciaFis){
+        int aux=0;
+        try {
+            String sql="?= call deleteFuncion(?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,dniPer);
+            cStmt.setString(3, licenciaFis);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {

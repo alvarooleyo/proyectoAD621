@@ -188,25 +188,27 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     ex.printStackTrace();
                 }
                 break;      
+                
             case btnInsertarEnlace:
                 try {
-                    String dni= this.vista.txtTitularEnlace.getText();
-                    String funcion= this.vista.txtOcupacionEnlace.getText();
-                    String bar= this.vista.txtLicenciaEnlace.getText();
-                    boolean Titular= true;
-                    this.modelo.insertarInfoBar(dni, bar, Titular,funcion);
+                    String dniPer= this.vista.txtTitularEnlace.getText();
+                    String funcionTra= this.vista.txtOcupacionEnlace.getText();
+                    String LicenciaFis= this.vista.txtLicenciaEnlace.getText();
+                    boolean esTit= true;
+                    this.modelo.insertarInfoBar(dniPer, LicenciaFis, esTit, funcionTra);
                     this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
                     
                 } catch (Exception ex) {
                 }
                 break;
+                
             case btnEliminarEnlace:
                 try {
-                    String dniPersona= this.vista.txtTitularEnlace.getText();
-                    String bar= this.vista.txtLicenciaEnlace.getText();
-                    //this.modelo.eliminarTieneTitular(dniPersona, bar);
-                    //this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
+                    String dniPer= this.vista.txtTitularEnlace.getText();
+                    String licenciaFis= this.vista.txtLicenciaEnlace.getText();
+                    this.modelo.eliminarInfoBar(dniPer, licenciaFis);
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
                 } catch (Exception ex) {
                 }
