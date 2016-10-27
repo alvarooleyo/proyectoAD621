@@ -12,7 +12,15 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -576,5 +584,39 @@ public class ModeloSQL extends DatabaseSQL{
             System.err.println(e.getMessage());
         }
         return aux;
+    }
+    
+    public void generarInformeRecaudaciones(String cif) {
+    //Escoge la ruta en el que se encuentra el documento
+        String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+        path = path.split("build")[0] + "src/informes/reportRecaudaciones.jrxml";
+        Map param = new HashMap<String, Object>();
+        param.put("Licencia Fiscal", cif);
+        try {
+    //Escoge el informe listado Facturas para imprimirlo
+            JasperReport contenido = JasperCompileManager.compileReport(path);
+            JasperPrint mostrar = new JasperPrint();
+            mostrar = JasperFillManager.fillReport(contenido, param, getConexion());
+             JasperViewer view= new JasperViewer(mostrar, false);
+            view.setVisible(true);
+        } catch (JRException ex) {
+        }
+    }
+    
+    public void generarInformeStock(String cif) {
+    //Escoge la ruta en el que se encuentra el documento
+        String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+        path = path.split("build")[0] + "src/informes/reportStock.jrxml";
+        Map param = new HashMap<String, Object>();
+        param.put("Licencia Fiscal", cif);
+        try {
+    //Escoge el informe listado Facturas para imprimirlo
+            JasperReport contenido = JasperCompileManager.compileReport(path);
+            JasperPrint mostrar = new JasperPrint();
+            mostrar = JasperFillManager.fillReport(contenido, param, getConexion());
+             JasperViewer view= new JasperViewer(mostrar, false);
+            view.setVisible(true);
+        } catch (JRException ex) {
+        }
     }
 }

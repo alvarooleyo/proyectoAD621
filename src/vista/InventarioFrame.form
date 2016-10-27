@@ -191,6 +191,7 @@
                               <Component id="btnModificarProducto" alignment="1" max="32767" attributes="0"/>
                               <Component id="btnEliminarProducto" alignment="1" pref="106" max="32767" attributes="0"/>
                               <Component id="btnLimpiarInventario" max="32767" attributes="0"/>
+                              <Component id="btnInformeStock" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -200,7 +201,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace pref="47" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnInsertarProducto" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -209,6 +210,8 @@
                                   <Component id="btnEliminarProducto" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="btnLimpiarInventario" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnInformeStock" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" min="-2" pref="275" max="-2" attributes="0"/>
                           </Group>
@@ -296,6 +299,14 @@
                 <Component class="javax.swing.JButton" name="btnLimpiarInventario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Limpiar"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnInformeStock">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Informe Stock"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
