@@ -35,7 +35,10 @@ public class ControladorBar implements ActionListener, MouseListener{
         btnEliminarBar,
         btnEliminarTitular,
         btnInsertarEnlace,
-        btnEliminarEnlace
+        btnEliminarEnlace, 
+        btnLimpiarBar,
+        btnLimpiarTitular,
+        btnLimpiarEnlace
     }
     
     public ControladorBar(TitularFrame vista){
@@ -70,6 +73,12 @@ public class ControladorBar implements ActionListener, MouseListener{
             this.vista.btnInsertarEnlace.addActionListener(this);
             this.vista.btnEliminarEnlace.setActionCommand("btnEliminarEnlace");
             this.vista.btnEliminarEnlace.addActionListener(this);
+            this.vista.btnLimpiarEnlace.setActionCommand("btnLimpiarEnlace");
+            this.vista.btnLimpiarEnlace.addActionListener(this);
+            this.vista.btnLimpiarBar.setActionCommand("btnLimpiarBar");
+            this.vista.btnLimpiarBar.addActionListener(this);
+            this.vista.btnLimpiarTitular.setActionCommand("btnLimpiarTitular");
+            this.vista.btnLimpiarTitular.addActionListener(this);
             
             //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableBar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,6 +225,26 @@ public class ControladorBar implements ActionListener, MouseListener{
                 } catch (Exception ex) {
                 }
                 break;
+                
+            case btnLimpiarBar:
+                
+                LimpiarBar();
+                
+                break;
+            
+            case btnLimpiarEnlace:
+                
+                LimpiarEnlace();
+                
+                break;
+                
+            case btnLimpiarTitular:
+                
+                LimpiarTitular();
+                
+                break;
+                
+            
         }
     }
     

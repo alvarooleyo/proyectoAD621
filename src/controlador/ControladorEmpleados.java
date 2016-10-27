@@ -31,7 +31,9 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
         btnModificarEmpleados,
         btnEliminarEmpleados,
         btnInsertarEnlace,
-        btnEliminarEnlace
+        btnEliminarEnlace,
+        btnLimpiarEmpleado,
+        btnLimpiarEnlaceEmpleado
     }
     
     public ControladorEmpleados(EmpleadosFrame vista){
@@ -60,6 +62,13 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
         this.vista.btnInsertarEnlace.addActionListener(this);
         this.vista.btnEliminarEnlace.setActionCommand("btnEliminarEnlace");
         this.vista.btnEliminarEnlace.addActionListener(this);
+        
+        this.vista.btnLimpiarEmpleado.setActionCommand("btnLimpiarEmpleado");
+        this.vista.btnLimpiarEmpleado.addActionListener(this);
+        
+        this.vista.btnLimpiarEnlaceEmpleado.setActionCommand("btnLimpiarEnlaceEmpleado");
+        this.vista.btnLimpiarEnlaceEmpleado.addActionListener(this);
+        
         
         //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,6 +154,18 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
                     LimpiarEnlace();
                 } catch (Exception ex) {
                 }
+                break;
+                
+            case btnLimpiarEmpleado:
+                
+                LimpiarEmpleados();
+                
+                break;
+                
+            case btnLimpiarEnlaceEmpleado:
+                
+                LimpiarEnlace();
+                
                 break;
         }
     }

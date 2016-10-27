@@ -30,7 +30,8 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
     public enum AccionMVC{
         btnInsertarContabilidad,
         btnModificarContabilidad,
-        btnEliminarContabilidad
+        btnEliminarContabilidad,
+        btnLimpiar
     }
     
     public ControladorContabilidad(ContabilidadFrame vista){
@@ -47,10 +48,17 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         }
         this.vista.btnInsertarContabilidad.setActionCommand("btnInsertarContabilidad");
         this.vista.btnInsertarContabilidad.addActionListener(this);
+        
         this.vista.btnModificarContabilidad.setActionCommand("btnModificarContabilidad");
         this.vista.btnModificarContabilidad.addActionListener(this);
+        
         this.vista.btnEliminarContabilidad.setActionCommand("btnEliminarContabilidad");
         this.vista.btnEliminarContabilidad.addActionListener(this);
+        
+        this.vista.btnLimpiarContablidad.setActionCommand("btnLimpiar");
+        this.vista.btnLimpiarContablidad.addActionListener(this);
+        
+        
         
         //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableContabilidad.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +112,13 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
                     LimpiarCotabilidad();
                 } catch (Exception ex) {
                 }
-                break;                             
+                break; 
+                
+            case btnLimpiar:
+                
+                LimpiarCotabilidad();
+                
+                break;
         }
     }
     
@@ -121,9 +135,21 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila = this.vista.jTableContabilidad.getSelectedRow();
-        String numeroPedido = (String) this.vista.jTableContabilidad.getValueAt(fila, 0);
-        String[] Relleno = this.modelo.rellenarInventario(numeroPedido);
-        this.vista.txtNumeroContabilidad.setText(numeroPedido);
+        //int numeroPedido = (int) this.vista.jTableContabilidad.getValueAt(fila, 0);
+       
+        
+        String auxiliar = String.valueOf(this.vista.jTableContabilidad.getValueAt(fila, 0));
+        int numeroPedido = Integer.parseInt(auxiliar);
+        
+        System.out.println(numeroPedido);
+        
+        String[] Relleno = this.modelo.rellenarContabilidad(numeroPedido);
+        
+        
+        
+        
+        
+        this.vista.txtNumeroContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 0));
         this.vista.txtFechaContabilidad.setText(Relleno[0]);
         this.vista.txtCodigoContabilidad.setText(Relleno[1]);
         this.vista.txtProveedorContabilidad.setText(Relleno[2]);
