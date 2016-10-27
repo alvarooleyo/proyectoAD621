@@ -47,11 +47,11 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableBar.setModel(this.modelo.getTablaBar());
-            /*this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
+            this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
             this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
             this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
-            this.vista.jTableInfoBar.setModel(this.modelo.getTablaInfoBar());*/
+            this.vista.jTableInfoBar.setModel(this.modelo.getTablaInfoBar());
             
         } catch (Exception e) {
         }
@@ -109,7 +109,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     Date fechaApertura= Date.valueOf(this.vista.txtFechaBar.getText());
                     String horario= this.vista.txtHorarioBar.getText(); 
                     String diasApertura= this.vista.txtDiasBar.getText();
-                    //this.modelo.insertarBar(licenciaFiscal, nombreBar, domicilioBar, fechaApertura, horario, diasApertura);
+                    this.modelo.insertarBar(licenciaFiscal, nombreBar, domicilioBar, fechaApertura, horario, diasApertura);
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
@@ -122,12 +122,12 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnInsertarTitular:
                 try {
-                    String dniTitular =this.vista.txtDNI1Titular.getText();
-                    String nombreTitular= this.vista.txtNombre1Titular.getText();
-                    String domicilioTitular= this.vista.txtDomicilio1Titular.getText();
-                   // this.modelo.insertarTitulares(dniTitular, nombreTitular, domicilioTitular);
-                   // this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
-                    //this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
+                    String dniPersona =this.vista.txtDNI1Titular.getText();
+                    String nombrePersona= this.vista.txtNombre1Titular.getText();
+                    String domicilioPersona= this.vista.txtDomicilio1Titular.getText();
+                    this.modelo.insertarPersona(dniPersona, nombrePersona, domicilioPersona);
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
+                    this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
                     LimpiarTitular();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -142,7 +142,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     Date fechaApertura= Date.valueOf(this.vista.txtFechaBar.getText());
                     String horario= this.vista.txtHorarioBar.getText(); 
                     String diasApertura= this.vista.txtDiasBar.getText();
-                    //this.modelo.modificarBar(licenciaFiscal, nombreBar, domicilioBar, fechaApertura, horario, diasApertura);
+                    this.modelo.modificarBar(licenciaFiscal, nombreBar, domicilioBar, fechaApertura, horario, diasApertura);
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
@@ -153,12 +153,12 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnModificarTitular:
                 try {
-                    String dniTitular =this.vista.txtDNI1Titular.getText();
-                    String nombreTitular= this.vista.txtNombre1Titular.getText();
-                    String domicilioTitular= this.vista.txtDomicilio1Titular.getText();   
-                    //this.modelo.modificarTitulares(nombreTitular, domicilioTitular, dniTitular);
-                    //this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
-                    //this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
+                    String dniPersona =this.vista.txtDNI1Titular.getText();
+                    String nombrePersona= this.vista.txtNombre1Titular.getText();
+                    String domicilioPersona= this.vista.txtDomicilio1Titular.getText();   
+                    this.modelo.modificarPersona(dniPersona, nombrePersona, domicilioPersona);
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
+                    this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
                     LimpiarTitular();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -168,12 +168,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
             case btnEliminarBar:
                 try {
                     String licenciaFiscal= this.vista.txtLicenciaBar.getText();
-                    String nombreBar= this.vista.txtNombreBar.getText();
-                    String domicilioBar= this.vista.txtDomicilioBar.getText();
-                    Date fechaApertura= Date.valueOf(this.vista.txtFechaBar.getText());
-                    String horario= this.vista.txtHorarioBar.getText(); 
-                    String diasApertura= this.vista.txtDiasBar.getText();      
-                    //this.modelo.eliminarBar(licenciaFiscal);
+                    this.modelo.eliminarBar(licenciaFiscal);
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
@@ -185,11 +180,9 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
             case btnEliminarTitular:
                 try {
                     String dniTitular =this.vista.txtDNI1Titular.getText();
-                    String nombreTitular= this.vista.txtNombre1Titular.getText();
-                    String domicilioTitular= this.vista.txtDomicilio1Titular.getText();
-                    //this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
-                    //this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
-                    //this.modelo.eliminarTitulares(dniTitular);
+                    this.vista.jTableTitular.setModel(this.modelo.getTablaTitular());
+                    this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
+                    this.modelo.eliminarPersona(dniTitular);
                     LimpiarTitular();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -197,11 +190,12 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 break;      
             case btnInsertarEnlace:
                 try {
-                    String dniPersona= this.vista.txtTitularEnlace.getText();
+                    String dni= this.vista.txtTitularEnlace.getText();
                     String funcion= this.vista.txtOcupacionEnlace.getText();
                     String bar= this.vista.txtLicenciaEnlace.getText();
-                    //this.modelo.insertarTieneTitular(dniPersona, bar, funcion);
-                    //this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
+                    boolean Titular= true;
+                    this.modelo.insertarInfoBar(dni, bar, Titular,funcion);
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
                     
                 } catch (Exception ex) {
