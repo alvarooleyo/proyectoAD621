@@ -181,58 +181,6 @@ public class ModeloSQL extends DatabaseSQL{
          return tablemodel;
     }
     
-    public DefaultTableModel getTablaInfoProductos() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
-        int registros = 0;
-        String[] columNames = {"Producto", "Bar"};
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[2];
-            while(!res.isAfterLast()){
-                fila[0]= res.getString("producto");
-                fila[1]= res.getString("bar");
-                
-                tablemodel.addRow(fila);
-                res.next();
-            }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
-    }
-    
-    public DefaultTableModel getTablaInfoContabilidad() throws SQLException {
-        DefaultTableModel tablemodel = new DefaultTableModel();
-        int registros = 0;
-        String[] columNames = {"Producto", "Pedido"}; 
-         try {
-            Connection cn= this.getConexion();
-            CallableStatement st= cn.prepareCall("");
-            
-            st.executeQuery();
-            ResultSet res = st.getResultSet();
-            res.first();
-            Object[] fila= new Object[2];
-            while(!res.isAfterLast()){
-                fila[0] = res.getString("producto");
-                fila[1] = res.getString("pedido");
-                
-                tablemodel.addRow(fila);
-                res.next();
-            }
-            
-         } catch (Exception e) {
-             System.err.println(e.getMessage());
-         }
-         return tablemodel;
-    }
-    
     public DefaultTableModel getTablaContabilidad() throws SQLException {
         DefaultTableModel tablemodel = new DefaultTableModel();
         int registros = 0;
@@ -352,5 +300,167 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
+    public int modificarBar(String licenciaFiscal,String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
+        int resultado=-1;
+        try {
+        String sql="?= call updateBar(?,?,?,?,?,?)";
+        CallableStatement cStmt= this.getConexion().prepareCall(sql);
+        cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+        cStmt.setString(2,licenciaFiscal);
+        cStmt.setString(3, nombreBar);
+        cStmt.setString(4, domicilioBar);
+        cStmt.setDate(5, fechaApertura);
+        cStmt.setString(6, horario);
+        cStmt.setString(7, diasApertura);
+        cStmt.execute();
+        resultado= cStmt.getInt(1);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return resultado;
+    }
     
+    public int modificarPersona(String dniPersona, String nombrePersona, String domicilioPersona){
+        int aux=0;
+        try {
+            String sql="?= call updatePersona(?,?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,dniPersona);
+            cStmt.setString(3, nombrePersona);
+            cStmt.setString(4, domicilioPersona);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int modificarProducto(String nombreProducto, int cantidad, double precioCoste){
+        int aux=0;
+        try {
+            String sql="?= call updateProducto(?,?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,nombreProducto);
+            cStmt.setInt(3, cantidad);
+            cStmt.setDouble(4, precioCoste);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int modificarPedido(String nombreProducto, int cantidad, double precioCoste){
+        int aux=0;
+        try {
+            String sql="?= call updateProducto(?,?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,nombreProducto);
+            cStmt.setInt(3, cantidad);
+            cStmt.setDouble(4, precioCoste);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int modificarRecaudacion(String idBar, double cantidadRecaudacion, Date fechaRecaudacion){
+        int aux=0;
+        try {
+            String sql="?= call updateRecaudacion(?,?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,idBar);
+            cStmt.setDouble(3, cantidadRecaudacion);
+            cStmt.setDate(4, fechaRecaudacion);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int eliminarBar(String licenciaFiscal){
+        int resultado=-1;
+        try {
+        String sql="?= call deleteBar(?)";
+        CallableStatement cStmt= this.getConexion().prepareCall(sql);
+        cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+        cStmt.setString(2,licenciaFiscal);
+        cStmt.execute();
+        resultado= cStmt.getInt(1);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    public int eliminarPersona(String dniPersona){
+        int aux=0;
+        try {
+            String sql="?= call deletePersona(?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,dniPersona);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int eliminarProducto(String codProducto){
+        int aux=0;
+        try {
+            String sql="?= call deleteProducto(?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,codProducto);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int eliminarPedido(String numeroPed){
+        int aux=0;
+        try {
+            String sql="?= call deleteProducto(?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,numeroPed);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int eliminarRecaudacion(String idB, Date fechaRec){
+        int aux=0;
+        try {
+            String sql="?= call deleteRecaudacion(?,?)";
+            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,idB);
+            cStmt.setDate(3, fechaRec);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
 }
