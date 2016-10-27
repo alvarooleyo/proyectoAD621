@@ -43,7 +43,8 @@ public class ControladorInicio implements ActionListener, MouseListener {
         switch (ControladorInicio.AccionMVC.valueOf(e.getActionCommand())) {
             case btnSQL:
                 try {
-                     //new ControladorSQL(new Interface()).iniciar();
+                     new ControladorSQL(new Interface()).iniciar();
+                     this.vista.setVisible(false);
                 } catch (Exception ex) {
                 }
                 break;
