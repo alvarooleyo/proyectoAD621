@@ -219,6 +219,7 @@ public class ControladorBar implements ActionListener, MouseListener{
         }
     }
     
+    //----------------------Tras la escritura de datos, limpiamos los campos---------------------------
     public void LimpiarBar(){
         this.vista.txtLicenciaBar.setText("");
         this.vista.txtNombreBar.setText("");

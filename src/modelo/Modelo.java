@@ -18,6 +18,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Modelo extends DatabaseSQLite{
     
+    /**
+     * Creamos métodos para que nos carguen las tablas donde están almacenados los datos de los bares
+     */
+    
     public DefaultTableModel getTablaBar(){
         
       DefaultTableModel tablemodel = new DefaultTableModel();
@@ -32,7 +36,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -68,7 +72,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -104,7 +108,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -140,7 +144,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][4];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -177,7 +181,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][7];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -217,7 +221,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -253,7 +257,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][3];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -289,7 +293,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][2];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -324,7 +328,7 @@ public class Modelo extends DatabaseSQLite{
         }catch(SQLException e){
            System.err.println( e.getMessage() );
         }
-        //se crea una matriz con tantas filas y columnas que necesite
+        //se crea una matriz con tantas filas y columnas como necesite
         Object[][] data = new String[registros][2];
         try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
@@ -450,6 +454,10 @@ public class Modelo extends DatabaseSQLite{
         }
         return Relleno; 
     }
+    
+    /**
+     * Creamos los métodos para realizar los distintos CRUD
+     */
    
     public void insertarBar(String licenciaFiscal, String nombreBar,String domicilioBar,Date fechaApertura, String horario, String diasApertura){
           String z="insert into Bar values ('"+licenciaFiscal+"','"+nombreBar+"','"+domicilioBar+"','"+fechaApertura+"','"+horario+"','"+diasApertura+"')";

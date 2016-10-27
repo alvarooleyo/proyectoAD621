@@ -19,7 +19,10 @@ public class DatabaseSQLite {
  Connection conexion;
     
     public DatabaseSQLite(){
-        
+        /**
+         * Asignamos el conector y los datos de la conexión. Estableciendo un control de errores para comprobar
+         * el estado de la conexión.
+         */
         try{
             Class.forName("org.sqlite.JDBC");
             conexion=DriverManager.getConnection("jdbc:sqlite:db/Database.db3");
