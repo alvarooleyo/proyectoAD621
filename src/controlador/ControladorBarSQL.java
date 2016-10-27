@@ -100,7 +100,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
     
      @Override
     public void actionPerformed(ActionEvent e) {
-        switch (AccionMVC.valueOf(e.getActionCommand())) {
+        switch (ControladorBarSQL.AccionMVC.valueOf(e.getActionCommand())) {
             case btnInsertarBar:
                 try {
                     String licenciaF= this.vista.txtLicenciaBar.getText();

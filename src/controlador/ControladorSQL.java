@@ -31,9 +31,9 @@ public class ControladorSQL implements ActionListener, MouseListener {
     ContabilidadFrame vistaContabilidad= new ContabilidadFrame();
     
     ControladorBarSQL controladorBar;
-    ControladorContabilidad controladorContabilidad;
-    ControladorEmpleados controladorEmpleados;
-    ControladorInventario controladorInventario;
+    ControladorContabilidadSQL controladorContabilidad;
+    ControladorEmpleadosSQL controladorEmpleados;
+    ControladorInventarioSQL controladorInventario;
 
 
     public enum AccionMVC {
@@ -52,11 +52,11 @@ public class ControladorSQL implements ActionListener, MouseListener {
         try {
             controladorBar = new ControladorBarSQL(vistaTitular);
             controladorBar.iniciar();
-            controladorEmpleados = new ControladorEmpleados(vistaEmpleados);
+            controladorEmpleados = new ControladorEmpleadosSQL(vistaEmpleados);
             controladorEmpleados.iniciar();
-            controladorInventario = new ControladorInventario(vistaInventario);
+            controladorInventario = new ControladorInventarioSQL(vistaInventario);
             controladorInventario.iniciar();
-            controladorContabilidad = new ControladorContabilidad(vistaContabilidad);
+            controladorContabilidad = new ControladorContabilidadSQL(vistaContabilidad);
             controladorContabilidad.iniciar();
             } catch (Exception e) {
         }

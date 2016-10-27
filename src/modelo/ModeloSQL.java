@@ -177,7 +177,7 @@ public class ModeloSQL extends DatabaseSQL{
         int registros = 0;
         try {
             //llamamos a la funcion almacenada en la base de datos
-            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalProductos}");
+            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalProducto}");
             //detallamos que la variable de salida va a ser de tipo Integer
             pstm.registerOutParameter(1, Types.INTEGER);
             //ejecutamos la llamada a la funcion
@@ -253,7 +253,7 @@ public class ModeloSQL extends DatabaseSQL{
         int registros = 0;
         try {
             //llamamos a la funcion almacenada en la base de datos
-            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalPedidos}");
+            CallableStatement pstm = this.getConexion().prepareCall("{?=call totalPedido}");
             //detallamos que la variable de salida va a ser de tipo Integer
             pstm.registerOutParameter(1, Types.INTEGER);
             //ejecutamos la llamada a la funcion
@@ -316,10 +316,10 @@ public class ModeloSQL extends DatabaseSQL{
     }
     
     public int insertarInfoBar(String dniPer, String LicenciaFis, boolean esTit, String funcionTra){
-        int aux=0;
+        int aux=1;
         try {
             
-            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertNuevoPuesto(?,?,?,?)}");
+            CallableStatement cStmt= this.getConexion().prepareCall("{?=call insertNuevoPuesto(?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cStmt.setString(2,dniPer);
             cStmt.setString(3, LicenciaFis);
@@ -352,8 +352,7 @@ public class ModeloSQL extends DatabaseSQL{
     public int insertarProducto(String nombreProducto, int cantidad, double precioCoste){
         int aux=0;
         try {
-            String sql="?= call insertProducto(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertProducto(?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cStmt.setString(2,nombreProducto);
             cStmt.setInt(3, cantidad);
@@ -366,15 +365,17 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int insertarPedido(String nombreProducto, int cantidad, double precioCoste){
+    public int insertarPedido(Date fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
         int aux=0;
         try {
-            String sql="?= call insertProducto(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertPedido(?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,nombreProducto);
-            cStmt.setInt(3, cantidad);
-            cStmt.setDouble(4, precioCoste);
+            cStmt.setDate(2,fechaPed);
+            cStmt.setInt(3, codigoPed);
+            cStmt.setString(4, nombreProv);
+            cStmt.setString(5,nombreArt);
+            cStmt.setInt(6, cantidadArt);
+            cStmt.setDouble(7, precioTot);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -435,15 +436,14 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int modificarProducto(String nombreProducto, int cantidad, double precioCoste){
+    public int modificarProducto(String nombreProd, int cantidadProd, double precioProd){
         int aux=0;
         try {
-            String sql="?= call updateProducto(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updateProducto(?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,nombreProducto);
-            cStmt.setInt(3, cantidad);
-            cStmt.setDouble(4, precioCoste);
+            cStmt.setString(2,nombreProd);
+            cStmt.setInt(3, cantidadProd);
+            cStmt.setDouble(4, precioProd);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -452,15 +452,17 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int modificarPedido(String nombreProducto, int cantidad, double precioCoste){
+    public int modificarPedido(Date fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
         int aux=0;
         try {
-            String sql="?= call updateProducto(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,nombreProducto);
-            cStmt.setInt(3, cantidad);
-            cStmt.setDouble(4, precioCoste);
+            cStmt.setDate(2,fechaPed);
+            cStmt.setInt(3, codigoPed);
+            cStmt.setString(4, nombreProv);
+            cStmt.setString(5,nombreArt);
+            cStmt.setInt(6, cantidadArt);
+            cStmt.setDouble(7, precioTot);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -529,13 +531,12 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int eliminarPedido(String numeroPed){
+    public int eliminarPedido(int numeroPed){
         int aux=0;
         try {
-            String sql="?= call deleteProducto(?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call deletePedido(?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,numeroPed);
+            cStmt.setInt(2,numeroPed);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
