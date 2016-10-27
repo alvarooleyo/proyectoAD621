@@ -42,10 +42,6 @@ public class ControladorInventario implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
-            this.vista.jTableEnlaceProducto.setModel(this.modelo.getTablaProductos());
-            this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
-            this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoProductos());
-            this.vista.jTableInfoInventario.setModel(this.modelo.getTablaInfoProductos());
                     
         } catch (Exception e) {
         }
@@ -55,27 +51,11 @@ public class ControladorInventario implements ActionListener, MouseListener{
             this.vista.btnModificarProducto.addActionListener(this);
             this.vista.btnEliminarProducto.setActionCommand("btnEliminarProducto");
             this.vista.btnEliminarProducto.addActionListener(this);
-            this.vista.btnInsertarEnlace.setActionCommand("btnInsertarEnlace");
-            this.vista.btnInsertarEnlace.addActionListener(this);
-            this.vista.btnEliminarEnlace.setActionCommand("btnEliminarEnlace");
-            this.vista.btnEliminarEnlace.addActionListener(this);
             
             //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableInventarioMouseClicked(evt);
-            }
-        });
-        
-        this.vista.jTableEnlaceProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableEnlaceProductoMouseClicked(evt);
-            }
-        });
-        
-        this.vista.jTableEnlaceBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableEnlaceBarMouseClicked(evt);
             }
         });
     }
@@ -123,31 +103,8 @@ public class ControladorInventario implements ActionListener, MouseListener{
                 }
                 break;
                 
-            case btnInsertarEnlace:
-                try {
-                    
-                    int producto= Integer.parseInt(this.vista.txtProductoEnlace.getText());
-                    String bar= this.vista.txtLicenciaEnlace.getText();
-                    this.modelo.insertarVende(producto, bar);
-                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoProductos());
-                    LimpiarEnlace();
-                    
-                } catch (Exception ex) {
-                }
-                break;
-            case btnEliminarEnlace:
-                try {
-                    int producto= Integer.parseInt(this.vista.txtProductoEnlace.getText());
-                    String bar= this.vista.txtLicenciaEnlace.getText();
-                    this.modelo.eliminarVende(producto, bar);
-                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoProductos());
-                    LimpiarEnlace();
-                } catch (Exception ex) {
-                }
-                break;
-        }
     }
-
+    }
     public void LimpiarInventario(){
         this.vista.txtCantidadProducto.setText("");
         this.vista.txtCodigoProducto.setText("");
@@ -155,10 +112,6 @@ public class ControladorInventario implements ActionListener, MouseListener{
         this.vista.txtPrecioProducto.setText("");
     }
     
-    public void LimpiarEnlace(){
-        this.vista.txtProductoEnlace.setText("");
-        this.vista.txtLicenciaEnlace.setText("");
-    }
     //----------------------Permite la selección de elementos dentro de tablas---------------------------
     private void jTableInventarioMouseClicked(java.awt.event.MouseEvent evt) {
 
@@ -169,20 +122,6 @@ public class ControladorInventario implements ActionListener, MouseListener{
         this.vista.txtNombreProducto.setText(Relleno[0]);
         this.vista.txtCantidadProducto.setText(Relleno[1]);
         this.vista.txtPrecioProducto.setText(Relleno[2]);
-    }
-    
-    private void jTableEnlaceProductoMouseClicked(java.awt.event.MouseEvent evt) {
-
-        fila2 = this.vista.jTableEnlaceProducto.getSelectedRow();
-        String codigoProducto = (String) this.vista.jTableEnlaceProducto.getValueAt(fila2, 0);
-        this.vista.txtProductoEnlace.setText(codigoProducto);
-    }
-    
-    private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
-
-        fila3 = this.vista.jTableEnlaceBar.getSelectedRow();
-        String licenciaFiscal = (String) this.vista.jTableEnlaceBar.getValueAt(fila3, 0);
-        this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
     }
     
     @Override
