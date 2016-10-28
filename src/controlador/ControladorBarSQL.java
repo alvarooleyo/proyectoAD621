@@ -50,7 +50,9 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
             this.vista.jTableTitular.setModel(this.modelo.getTablaPersona());
             this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
             this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaPersona());
+            this.vista.txtTitularEnlace.setEnabled(false);
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
+            this.vista.txtLicenciaEnlace.setEnabled(false);
             this.vista.jTableInfoBar.setModel(this.modelo.getTablaInfoBar());
             
         } catch (Exception e) {
@@ -222,13 +224,15 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         this.vista.txtDomicilioBar.setText("");
         this.vista.txtFechaBar.setText("");
         this.vista.txtHorarioBar.setText(""); 
-        this.vista.txtDiasBar.getText();
+        this.vista.txtDiasBar.setText("");
+        this.vista.txtLicenciaBar.setEnabled(true);
     }
     
     public void LimpiarTitular(){
         this.vista.txtDNI1Titular.setText("");
         this.vista.txtNombre1Titular.setText("");
         this.vista.txtDomicilio1Titular.setText("");
+        this.vista.txtDNI1Titular.setEnabled(true);
     }
     
     public void LimpiarEnlace(){
@@ -242,34 +246,41 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
 
         fila = this.vista.jTableBar.getSelectedRow();
         String LicenciaBar = (String) this.vista.jTableBar.getValueAt(fila, 0);
-        //String[] Relleno = this.modelo.rellenarBar(LicenciaBar);
-
-        /*this.vista.txtLicenciaBar.setText(LicenciaBar);
-        this.vista.txtNombreBar.setText(Relleno[0]);
-        this.vista.txtDomicilioBar.setText(Relleno[1]);
-        this.vista.txtFechaBar.setText(Relleno[2]);
-        this.vista.txtHorarioBar.setText(Relleno[3]); 
-        this.vista.txtDiasBar.setText(Relleno[4]);*/
+        String NombreBar = (String) this.vista.jTableBar.getValueAt(fila, 1);
+        String DomicilioBar = (String) this.vista.jTableBar.getValueAt(fila, 2);
+        String FechaBar = (String) this.vista.jTableBar.getValueAt(fila, 3);
+        String HorarioBar = (String) this.vista.jTableBar.getValueAt(fila, 4);
+        String Dias = (String) this.vista.jTableBar.getValueAt(fila, 5);
+        
+        this.vista.txtLicenciaBar.setEnabled(false);
+        this.vista.txtLicenciaBar.setText(LicenciaBar);
+        this.vista.txtNombreBar.setText(NombreBar);
+        this.vista.txtDomicilioBar.setText(DomicilioBar);
+        this.vista.txtFechaBar.setText(FechaBar);
+        this.vista.txtHorarioBar.setText(HorarioBar); 
+        this.vista.txtDiasBar.setText(Dias);
     }
     
     private void jTableTitularMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila1 = this.vista.jTableTitular.getSelectedRow();
         String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila1, 0);
-        //String[] Relleno = this.modelo.rellenarTitular(dniTitular);
+        String nombre = (String) this.vista.jTableTitular.getValueAt(fila1, 1);
+        String domicilio = (String) this.vista.jTableTitular.getValueAt(fila1, 2);
+        
         this.vista.txtDNI1Titular.setText(dniTitular);
-        /*this.vista.txtNombre1Titular.setText(Relleno[0]);
-        this.vista.txtDomicilio1Titular.setText(Relleno[1]);*/
+        this.vista.txtDNI1Titular.setEnabled(false);
+        this.vista.txtNombre1Titular.setText(nombre);
+        this.vista.txtDomicilio1Titular.setText(domicilio);
     }
     
     private void jTableInfoBarMouseClicked(java.awt.event.MouseEvent evt) {
 
-        fila2 = this.vista.jTableTitular.getSelectedRow();
-        String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila2, 0);
-        //String[] Relleno = this.modelo.rellenarTitular(dniTitular);
-        this.vista.txtDNI1Titular.setText(dniTitular);
-        /*this.vista.txtNombre1Titular.setText(Relleno[0]);
-        this.vista.txtDomicilio1Titular.setText(Relleno[1]);*/
+        fila2 = this.vista.jTableEnlaceInfo.getSelectedRow();
+        String dniTitular = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 0);
+        String licenciaFiscal = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 1);
+        this.vista.txtTitularEnlace.setText(dniTitular);
+        this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
