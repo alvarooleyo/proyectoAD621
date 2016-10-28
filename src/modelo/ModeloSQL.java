@@ -464,11 +464,14 @@ public class ModeloSQL extends DatabaseSQL{
     public int modificarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
         int aux=0;
         try {
-            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?)}");
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,nombreArt);
-            cStmt.setInt(3, cantidadArt);
-            cStmt.setDouble(4, precioTot);
+            cStmt.setString(2,fechaPed);
+            cStmt.setInt(3, codigoPed);
+            cStmt.setString(4, nombreProv);
+            cStmt.setString(5,nombreArt);
+            cStmt.setInt(6, cantidadArt);
+            cStmt.setDouble(7, precioTot);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {

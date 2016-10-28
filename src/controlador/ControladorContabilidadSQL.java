@@ -142,6 +142,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtCantidadContabilidad.setText("");
         this.vista.txtPrecioContabilidad.setText("");
         this.vista.txtCodProd.setText("");
+        this.vista.txtCodProd.setEnabled(true);
     }
     
     public void LimpiarRecaudaciones(){
@@ -160,6 +161,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtCantidadContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 5));
         this.vista.txtPrecioContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 6));
         this.vista.txtCodProd.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 7));
+        this.vista.txtCodProd.setEnabled(false);
     }
     
     @Override
