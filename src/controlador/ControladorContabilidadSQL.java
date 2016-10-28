@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ModeloSQL;
@@ -163,6 +164,12 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                 }
                 break;
             case btnInsertarRecaudaciones1: 
+                    String licenciaFis= this.vista.txtRecaudacionesBar.getText();
+                    String fechaRec= this.vista.txtRecaudacionesFecha.getText();
+                    double cantidadRec= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
+                    this.modelo.insertarRecaudacion(licenciaFis, cantidadRec, fechaRec);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
                 break;
             case btnModificarRecaudaciones1: 
                 break;

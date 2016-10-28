@@ -443,15 +443,15 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int insertarRecaudacion(String idBar, double cantidadRecaudacion, Date fechaRecaudacion){
+    public int insertarRecaudacion(String licenciaFis, double cantidadRec, String fechaRec){
         int aux=0;
         try {
-            String sql="?= call insertRecaudacion(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertRecaudacion(?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,idBar);
-            cStmt.setDouble(3, cantidadRecaudacion);
-            cStmt.setDate(4, fechaRecaudacion);
+            cStmt.setString(2,licenciaFis);
+            cStmt.setDouble(3, cantidadRec);
+            cStmt.setString(4, fechaRec);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -661,7 +661,7 @@ public class ModeloSQL extends DatabaseSQL{
         String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
         path = path.split("build")[0] + "src/informes/reportBar.jrxml";
         Map param = new HashMap<String, Object>();
-        param.put("Licencia Fiscal", CIF);
+        param.put("CIF Bar", CIF);
         try {
     //Escoge el informe listado Facturas para imprimirlo
             JasperReport contenido = JasperCompileManager.compileReport(path);
