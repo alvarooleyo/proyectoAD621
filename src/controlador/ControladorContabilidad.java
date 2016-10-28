@@ -32,7 +32,10 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         btnModificarContabilidad,
         btnEliminarContabilidad,
         btnLimpiar,
-        btnLimpiarRecaudaciones1
+        btnLimpiarRecaudaciones1,
+        btnInsertarRecaudaciones1,
+        btnModificarRecaudaciones1,
+        btnEliminarRecaudaciones1
     }
     
     public ControladorContabilidad(ContabilidadFrame vista){
@@ -43,7 +46,7 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
-            
+            this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
             
         } catch (Exception e) {
         }
@@ -62,6 +65,15 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.btnLimpiarRecaudaciones1.setActionCommand("btnLimpiarRecaudaciones1");
         this.vista.btnLimpiarRecaudaciones1.addActionListener(this);
         
+        this.vista.btnInsertarRecaudaciones1.setActionCommand("btnInsertarRecaudaciones1");
+        this.vista.btnInsertarRecaudaciones1.addActionListener(this);
+        
+        this.vista.btnModificarRecaudaciones1.setActionCommand("btnModificarRecaudaciones1");
+        this.vista.btnModificarRecaudaciones1.addActionListener(this);
+        
+        this.vista.btnEliminarRecaudaciones1.setActionCommand("btnEliminarRecaudaciones1");
+        this.vista.btnEliminarRecaudaciones1.addActionListener(this);
+        
         
         
         //----------------------Funciones de click de ratón sobre tablas---------------------
@@ -69,7 +81,13 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableContabilidadMouseClicked(evt);
             }
-        });               
+        });    
+        
+        this.vista.jTableRecaudaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableRecaudacionesMouseClicked(evt);
+            }
+        });    
     }
     
      @Override
@@ -129,6 +147,42 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
                 LimpiarRecaudaciones();
                 
                 break;
+            
+            case btnInsertarRecaudaciones1: 
+                try {
+                    String bar= this.vista.txtRecaudacionesBar.getText();
+                    Date fechaRecaudacion= Date.valueOf(this.vista.txtRecaudacionesFecha.getText());
+                    double cantidadRecaudacion= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
+                    this.modelo.insertarRecaudacion(bar, fechaRecaudacion, cantidadRecaudacion);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }                    
+                break;
+                
+            case btnModificarRecaudaciones1: 
+                try {
+                    String bar= this.vista.txtRecaudacionesBar.getText();
+                    Date fechaRecaudacion= Date.valueOf(this.vista.txtRecaudacionesFecha.getText());
+                    double cantidadRecaudacion= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
+                    this.modelo.modificarRecaudacion(bar, fechaRecaudacion, cantidadRecaudacion);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }
+                break;
+                
+            case btnEliminarRecaudaciones1: 
+                try {
+                    String bar= this.vista.txtRecaudacionesBar.getText();
+                    Date fechaRecaudacion= Date.valueOf(this.vista.txtRecaudacionesFecha.getText());
+                    double cantidadRecaudacion= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
+                    this.modelo.eliminarRecaudacion(bar);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }
+                break;
         }
     }
     
@@ -165,6 +219,13 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.txtCantidadContabilidad.setText(Relleno[4]);
         this.vista.txtPrecioContabilidad.setText(Relleno[5]);
     }
+    
+    private void jTableRecaudacionesMouseClicked(java.awt.event.MouseEvent evt) {
+        fila2 = this.vista.jTableRecaudaciones1.getSelectedRow();
+        this.vista.txtRecaudacionesBar.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 0));
+        this.vista.txtRecaudacionesRecaudacion.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 2));
+        this.vista.txtRecaudacionesFecha.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 1));
+     }
     
     @Override
     public void mouseClicked(MouseEvent e) {}

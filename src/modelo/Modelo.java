@@ -58,6 +58,42 @@ public class Modelo extends DatabaseSQLite{
         return tablemodel;
     }
     
+    public DefaultTableModel getTablaRecaudaciones(){
+        
+      DefaultTableModel tablemodel = new DefaultTableModel();
+      int registros = 0; // Indica la cantidad de filas de la tabla.
+      String[] columNames = {"Licencia", "Fecha", "Cantidad"}; 
+      try{
+         PreparedStatement pstm = this.getConnection().prepareStatement( "SELECT count(*) as Total FROM Recaudaciones");
+         ResultSet res = pstm.executeQuery();
+         res.next();
+         registros = res.getInt("total");
+         res.close();
+        }catch(SQLException e){
+           System.err.println( e.getMessage() );
+        }
+        //se crea una matriz con tantas filas y columnas como necesite
+        Object[][] data = new String[registros][3];
+        try{
+          //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
+         PreparedStatement pstm = this.getConnection().prepareStatement("SELECT bar, fechaRecaudacion, cantidadRecaudacion FROM Recaudaciones");
+         ResultSet res = pstm.executeQuery();
+         int i=0;
+         while(res.next()){
+                data[i][0] = res.getString("bar");
+                data[i][1] = res.getString("fechaRecaudacion");
+                data[i][2] = res.getString("cantidadRecaudacion");
+            i++;
+         }
+         res.close();
+         //se añade la matriz de datos en el DefaultTableModel
+         tablemodel.setDataVector(data, columNames );
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return tablemodel;
+    }
+    
     public DefaultTableModel getTablaTitular(){
         
       DefaultTableModel tablemodel = new DefaultTableModel();
@@ -736,6 +772,47 @@ public class Modelo extends DatabaseSQLite{
     
     public void eliminarGenera(int producto, int pedido){
         String q="delete from Genera where producto='"+producto+"'and pedido='"+pedido+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 System.err.println( e.getMessage() );
+                 }
+    }
+    
+    public void insertarRecaudacion(String bar, Date fechaRecaudacion, double cantidadRecaudacion){
+          String z="insert into Recaudaciones values ('"+bar+"','"+fechaRecaudacion+"','"+cantidadRecaudacion+"')";
+                     System.out.println(z);
+
+          try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(z);             
+             pstm.execute();                           
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+      }
+    
+    public void modificarRecaudacion(String bar, Date fechaRecaudacion, double cantidadRecaudacion){
+        String q="update Recaudaciones set bar='"+bar+"', fechaRecaudacion='"+fechaRecaudacion+"', cantidadRecaudacion='"+cantidadRecaudacion+"'";
+         try{
+             PreparedStatement pstm = this.getConnection().prepareStatement(q);
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null,"Operación Realizada");
+             }catch(SQLException e){
+                 JOptionPane.showMessageDialog(null,"Error: Los datos son incorrectos.\nReviselos y vuelva a intentarlo");
+                 System.err.println( e.getMessage() );
+                 }
+        
+    }
+    
+     public void eliminarRecaudacion(String bar ){
+        String q="delete from Recaudaciones where bar='"+bar+"'";
          try{
              PreparedStatement pstm = this.getConnection().prepareStatement(q);
              pstm.execute();
