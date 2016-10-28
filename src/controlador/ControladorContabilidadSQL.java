@@ -82,10 +82,10 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                     int codigoPed= Integer.parseInt(this.vista.txtCodigoContabilidad.getText());
                     String nombreProv= this.vista.txtProveedorContabilidad.getText();
                     String nombreArt= this.vista.txtArticuloContabilidad.getText();
-                    int cantidadArt= Integer.parseInt(this.vista.txtCantidadContabilidad.getText());
+                    int cantidadPed= Integer.parseInt(this.vista.txtCantidadContabilidad.getText());
                     double precioTot= Double.parseDouble(this.vista.txtPrecioContabilidad.getText());
                     int codProd = Integer.parseInt(this.vista.txtCodProd.getText());
-                    this.modelo.insertarPedido(fechaPed, codigoPed, nombreProv, nombreArt, cantidadArt, precioTot, codProd);
+                    this.modelo.insertarPedido(fechaPed, codigoPed, nombreProv, nombreArt, cantidadPed, precioTot, codProd);
                     this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
                     LimpiarCotabilidad();
                     
@@ -95,14 +95,16 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                 
             case btnModificarContabilidad:
                 try {
-                    int numeroPedido=Integer.parseInt(this.vista.txtNumeroContabilidad.getText());
+                    
                     String fechaPed= this.vista.txtFechaContabilidad.getText();
+                    int codProd=Integer.parseInt(this.vista.txtNumeroContabilidad.getText());
                     int codigoPed= Integer.parseInt(this.vista.txtCodigoContabilidad.getText());
                     String nombreProv= this.vista.txtProveedorContabilidad.getText();
                     String nombreArt= this.vista.txtArticuloContabilidad.getText();
-                    int cantidadArt= Integer.parseInt(this.vista.txtCantidadContabilidad.getText());
+                    int cantidadPed= Integer.parseInt(this.vista.txtCantidadContabilidad.getText());
                     double precioTot= Double.parseDouble(this.vista.txtPrecioContabilidad.getText());
-                    this.modelo.modificarPedido(fechaPed, codigoPed, nombreProv, nombreArt, cantidadArt, precioTot);
+                    
+                    this.modelo.modificarPedido2(fechaPed, codigoPed, nombreProv, nombreArt, cantidadPed, precioTot, codProd);
                     this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
                     LimpiarCotabilidad();
                 } catch (Exception ex) {
@@ -142,7 +144,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtCantidadContabilidad.setText("");
         this.vista.txtPrecioContabilidad.setText("");
         this.vista.txtCodProd.setText("");
-        this.vista.txtCodProd.setEnabled(true);
+        this.vista.txtCodigoContabilidad.setEnabled(true);
     }
     
     public void LimpiarRecaudaciones(){
@@ -161,7 +163,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtCantidadContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 5));
         this.vista.txtPrecioContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 6));
         this.vista.txtCodProd.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 7));
-        this.vista.txtCodProd.setEnabled(false);
+        this.vista.txtCodigoContabilidad.setEnabled(false);
     }
     
     @Override

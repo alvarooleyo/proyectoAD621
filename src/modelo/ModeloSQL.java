@@ -373,7 +373,7 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int insertarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot, int codProd){
+    public int insertarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadPed, double precioTot, int codProd){
         int aux=0;
         try {
             CallableStatement cStmt= this.getConexion().prepareCall("{?= call insertPedido(?,?,?,?,?,?,?)}");
@@ -382,7 +382,7 @@ public class ModeloSQL extends DatabaseSQL{
             cStmt.setInt(3, codigoPed);
             cStmt.setString(4, nombreProv);
             cStmt.setString(5,nombreArt);
-            cStmt.setInt(6, cantidadArt);
+            cStmt.setInt(6, cantidadPed);
             cStmt.setDouble(7, precioTot);
             cStmt.setInt(8, codProd);
             cStmt.execute();
@@ -445,6 +445,7 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
+    
     public int modificarProducto(String nombreProd, int cantidadProd, double precioProd){
         int aux=0;
         try {
@@ -461,17 +462,38 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int modificarPedido(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadArt, double precioTot){
+    public int modificarPedido2(String fechaPed, int codigoPed, String nombreProv, String nombreArt, int cantidadPed, double precioTot, int codProd){
         int aux=0;
         try {
-            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?)}");
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cStmt.setString(2,fechaPed);
             cStmt.setInt(3, codigoPed);
             cStmt.setString(4, nombreProv);
             cStmt.setString(5,nombreArt);
-            cStmt.setInt(6, cantidadArt);
+            cStmt.setInt(6, cantidadPed);
             cStmt.setDouble(7, precioTot);
+            cStmt.setInt(8, codProd);
+            cStmt.execute();
+            aux= cStmt.getInt(1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aux;
+    }
+    
+    public int modificarPedido(String fechaPed, String nombreProv, String nombreArt, int cantidadPed, double precioTot, int codProd, int codigoPed){
+        int aux=0;
+        try {
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updatePedido(?,?,?,?,?,?,?)}");
+            cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cStmt.setString(2,fechaPed);
+            cStmt.setString(3, nombreProv);
+            cStmt.setString(4,nombreArt);
+            cStmt.setInt(5, cantidadPed);
+            cStmt.setDouble(6, precioTot);
+            cStmt.setInt(7, codProd);
+            cStmt.setInt(8, codigoPed);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
