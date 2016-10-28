@@ -25,6 +25,7 @@ public class ControladorBar implements ActionListener, MouseListener{
     int fila2 = -1;
     int fila3= -1;
     int fila4= -1;
+    int fila5= -1;
     TitularFrame vista= new TitularFrame();
     Modelo modelo= new Modelo();
 
@@ -56,6 +57,8 @@ public class ControladorBar implements ActionListener, MouseListener{
             this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
             this.vista.jTableInfoBar.setModel(this.modelo.getTablaInfoBar());
+            this.vista.txtLicenciaEnlace.setEnabled(false);
+            this.vista.txtTitularEnlace.setEnabled(false);
             
         } catch (Exception e) {
         }
@@ -103,11 +106,24 @@ public class ControladorBar implements ActionListener, MouseListener{
             }
         });
         
+        this.vista.jTableInfoBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInfoBarMouseClicked(evt);
+            }
+        });
+        
         this.vista.jTableEnlaceTitular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableEnlaceTitularMouseClicked(evt);
             }
         });
+        
+        this.vista.jTableEnlaceInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnlaceInfoMouseClicked(evt);
+            }
+        });
+        
     }
     
      @Override
@@ -294,6 +310,7 @@ public class ControladorBar implements ActionListener, MouseListener{
         this.vista.txtFechaBar.setText("");
         this.vista.txtHorarioBar.setText(""); 
         this.vista.txtDiasBar.setText("");
+        this.vista.txtLicenciaBar.setEnabled(true);
     }
     
     public void LimpiarTitular(){
@@ -307,6 +324,7 @@ public class ControladorBar implements ActionListener, MouseListener{
         this.vista.txtTitularEnlace.setText("");
         this.vista.txtOcupacionEnlace.setText("");
         this.vista.txtLicenciaEnlace.setText("");
+        
     }
     
     //----------------------Permite la selección de elementos dentro de tablas---------------------------
@@ -315,7 +333,7 @@ public class ControladorBar implements ActionListener, MouseListener{
         fila = this.vista.jTableBar.getSelectedRow();
         String LicenciaBar = (String) this.vista.jTableBar.getValueAt(fila, 0);
         String[] Relleno = this.modelo.rellenarBar(LicenciaBar);
-
+        this.vista.txtLicenciaBar.setEnabled(false);
         this.vista.txtLicenciaBar.setText(LicenciaBar);
         this.vista.txtNombreBar.setText(Relleno[0]);
         this.vista.txtDomicilioBar.setText(Relleno[1]);
@@ -337,12 +355,13 @@ public class ControladorBar implements ActionListener, MouseListener{
     
     private void jTableInfoBarMouseClicked(java.awt.event.MouseEvent evt) {
 
-        fila2 = this.vista.jTableTitular.getSelectedRow();
-        String dniTitular = (String) this.vista.jTableTitular.getValueAt(fila2, 0);
-        String[] Relleno = this.modelo.rellenarTitular(dniTitular);
-        this.vista.txtDNI1Titular.setText(dniTitular);
-        this.vista.txtNombre1Titular.setText(Relleno[0]);
-        this.vista.txtDomicilio1Titular.setText(Relleno[1]);
+        fila2 = this.vista.jTableInfoBar.getSelectedRow();
+        String licencia = (String) this.vista.jTableInfoBar.getValueAt(fila2, 0);
+        String dni = (String) this.vista.jTableInfoBar.getValueAt(fila2, 1);
+        String domicilio = (String) this.vista.jTableInfoBar.getValueAt(fila2, 2);
+        this.vista.txtLicenciaInfoBar.setText(licencia);
+        this.vista.txtDNIInfoBar.setText(dni);
+        this.vista.txtDomicilioInfoBar.setText(domicilio);
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
@@ -358,6 +377,16 @@ public class ControladorBar implements ActionListener, MouseListener{
         String dniPersona = (String) this.vista.jTableEnlaceTitular.getValueAt(fila4, 0);
         this.vista.txtTitularEnlace.setText(dniPersona);
     }
+    private void jTableEnlaceInfoMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila5 = this.vista.jTableEnlaceInfo.getSelectedRow();
+        String dniPersona = (String) this.vista.jTableEnlaceInfo.getValueAt(fila5, 0);
+        String licenciaFiscal = (String) this.vista.jTableEnlaceInfo.getValueAt(fila5, 1);
+        this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
+        this.vista.txtTitularEnlace.setText(dniPersona);
+    }
+    
+    
     
     @Override
     public void mouseClicked(MouseEvent e) {}

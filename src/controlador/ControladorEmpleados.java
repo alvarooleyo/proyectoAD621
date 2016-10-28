@@ -48,6 +48,8 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
             this.vista.jTableEnlaceEmpleados.setModel(this.modelo.getTablaEmpleados());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
             this.vista.jTableInfoEmpleados.setModel(this.modelo.getTablaInfoEmpleados());
+            this.vista.txtLicenciaEnlace.setEnabled(false);
+            this.vista.txtEmpleadoEnlace.setEnabled(false);
             
         } catch (Exception e) {
         }
@@ -88,6 +90,18 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
                 jTableEnlaceEmpleadosMouseClicked(evt);
             }
         });
+        
+        this.vista.jTableInfoEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInfoEmpleadosMouseClicked(evt);
+            }
+        });
+        
+        this.vista.jTableEnlaceInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnlaceInfoMouseClicked(evt);
+            }
+        });      
     }
     
      @Override
@@ -173,13 +187,16 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
     public void LimpiarEmpleados(){
         this.vista.txtDNIEmpleados.setText("");
         this.vista.txtNombreEmpleados.setText("");
-        this.vista.txtDomicilioEmpleados.setText("");
+        this.vista.txtDomicilioEmpleados.setText("");        
+        this.vista.txtDNIEmpleados.setEnabled(true);
     }
     
     public void LimpiarEnlace(){
         this.vista.txtEmpleadoEnlace.setText("");
         this.vista.txtOcupacionEnlace.setText("");
         this.vista.txtLicenciaEnlace.setText("");
+        this.vista.txtInfoDNI.setEnabled(true);
+        
     }
     
     //----------------------Permite la selección de elementos dentro de tablas---------------------------
@@ -191,6 +208,19 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
         this.vista.txtDNIEmpleados.setText(dniEmpleado);
         this.vista.txtNombreEmpleados.setText(Relleno[0]);
         this.vista.txtDomicilioEmpleados.setText(Relleno[1]);
+        this.vista.txtDNIEmpleados.setEnabled(false);
+    }
+    
+    private void jTableInfoEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila2 = this.vista.jTableInfoEmpleados.getSelectedRow();
+        String dniEmpleado = (String) this.vista.jTableInfoEmpleados.getValueAt(fila2, 0);
+        String Establecimiento = (String) this.vista.jTableInfoEmpleados.getValueAt(fila2, 1);
+        String Ocupacion = (String) this.vista.jTableInfoEmpleados.getValueAt(fila2, 2);
+        this.vista.txtInfoDNI.setText(dniEmpleado);
+        this.vista.txtInfoEstablecimiento.setText(Establecimiento);
+        this.vista.txtInfoOcupacion.setText(Ocupacion);
+        this.vista.txtInfoDNI.setEnabled(false);
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,14 +228,27 @@ public class ControladorEmpleados implements ActionListener, MouseListener{
         fila3 = this.vista.jTableEnlaceBar.getSelectedRow();
         String licenciaFiscal = (String) this.vista.jTableEnlaceBar.getValueAt(fila3, 0);
         this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
+        
     }
     
     private void jTableEnlaceEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila4 = this.vista.jTableEnlaceEmpleados.getSelectedRow();
         String dniPersona = (String) this.vista.jTableEnlaceEmpleados.getValueAt(fila4, 0);
-        this.vista.txtEmpleadoEnlace.setText(dniPersona);
+        this.vista.txtEmpleadoEnlace.setText(dniPersona);    
     }
+    
+    private void jTableEnlaceInfoMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila4 = this.vista.jTableEnlaceInfo.getSelectedRow();
+        String dniPersona = (String) this.vista.jTableEnlaceInfo.getValueAt(fila4, 0);
+        String Licencia = (String) this.vista.jTableEnlaceInfo.getValueAt(fila4, 1);
+        String Ocupacion = (String) this.vista.jTableEnlaceInfo.getValueAt(fila4, 2);
+        this.vista.txtEmpleadoEnlace.setText(dniPersona);    
+        this.vista.txtOcupacionEnlace.setText(Ocupacion);
+        this.vista.txtLicenciaEnlace.setText(Licencia);
+    }
+    
     
     @Override
     public void mouseClicked(MouseEvent e) {}
