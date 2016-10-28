@@ -37,7 +37,9 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         btnEliminarTitular,
         btnInsertarEnlace,
         btnEliminarEnlace,
-        btnLimpiarBar
+        btnLimpiarBar,
+        btnLimpiarTitular,
+        btnLimpiarEnlace
     }
     
     public ControladorBarSQL(TitularFrame vista){
@@ -75,8 +77,14 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
             this.vista.btnEliminarEnlace.setActionCommand("btnEliminarEnlace");
             this.vista.btnEliminarEnlace.addActionListener(this);
             
+            this.vista.btnLimpiarTitular.setActionCommand("btnLimpiarTitular");
+            this.vista.btnLimpiarTitular.addActionListener(this);
+            
             this.vista.btnLimpiarBar.setActionCommand("btnLimpiarBar");
             this.vista.btnLimpiarBar.addActionListener(this);
+            
+            this.vista.btnLimpiarEnlace.setActionCommand("btnLimpiarEnlace");
+            this.vista.btnLimpiarEnlace.addActionListener(this);
             
             
             
@@ -232,6 +240,18 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
             case btnLimpiarBar:
                 
                 LimpiarBar();
+                
+                break;
+                
+            case btnLimpiarTitular:
+                
+                LimpiarTitular();
+                
+                break;
+                
+            case btnLimpiarEnlace:
+                
+                LimpiarEnlace();
                 
                 break;
         }

@@ -31,7 +31,8 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
         btnModificarProducto,
         btnEliminarProducto,
         btnInsertarEnlace,
-        btnEliminarEnlace
+        btnEliminarEnlace,
+        btnLimpiarInventario
     }
     
     public ControladorInventarioSQL(InventarioFrame vista){
@@ -51,6 +52,9 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
             this.vista.btnModificarProducto.addActionListener(this);
             this.vista.btnEliminarProducto.setActionCommand("btnEliminarProducto");
             this.vista.btnEliminarProducto.addActionListener(this);
+            
+            this.vista.btnLimpiarInventario.setActionCommand("btnLimpiarInventario");
+            this.vista.btnLimpiarInventario.addActionListener(this);
             
             //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableInventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,6 +104,12 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                break;
+                
+            case btnLimpiarInventario:
+                
+                LimpiarInventario();
+                
                 break;
                 
     }
