@@ -31,7 +31,8 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         btnInsertarContabilidad,
         btnModificarContabilidad,
         btnEliminarContabilidad,
-        btnLimpiar
+        btnLimpiar,
+        btnLimpiarRecaudaciones1
     }
     
     public ControladorContabilidad(ContabilidadFrame vista){
@@ -57,6 +58,9 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         
         this.vista.btnLimpiarContablidad.setActionCommand("btnLimpiar");
         this.vista.btnLimpiarContablidad.addActionListener(this);
+        
+        this.vista.btnLimpiarRecaudaciones1.setActionCommand("btnLimpiarRecaudaciones1");
+        this.vista.btnLimpiarRecaudaciones1.addActionListener(this);
         
         
         
@@ -119,6 +123,12 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
                 LimpiarCotabilidad();
                 
                 break;
+                
+            case btnLimpiarRecaudaciones1:
+                
+                LimpiarRecaudaciones();
+                
+                break;
         }
     }
     
@@ -130,6 +140,13 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.txtArticuloContabilidad.setText("");
         this.vista.txtCantidadContabilidad.setText("");
         this.vista.txtPrecioContabilidad.setText("");
+    }
+    
+    public void LimpiarRecaudaciones(){
+        this.vista.txtRecaudacionesBar.setText("");
+        this.vista.txtRecaudacionesRecaudacion.setText("");
+        this.vista.txtRecaudacionesFecha.setText("");
+        
     }
     
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
