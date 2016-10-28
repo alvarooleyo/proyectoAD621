@@ -31,7 +31,8 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         btnInsertarContabilidad,
         btnModificarContabilidad,
         btnEliminarContabilidad,
-        btnLimpiar
+        btnLimpiarContablidad,
+        btnLimpiarRecaudaciones1
     }
     
     public ControladorContabilidadSQL(ContabilidadFrame vista){
@@ -55,8 +56,11 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.btnEliminarContabilidad.setActionCommand("btnEliminarContabilidad");
         this.vista.btnEliminarContabilidad.addActionListener(this);
         
-        this.vista.btnLimpiarContablidad.setActionCommand("btnLimpiar");
+        this.vista.btnLimpiarContablidad.setActionCommand("btnLimpiarContablidad");
         this.vista.btnLimpiarContablidad.addActionListener(this);
+        
+        this.vista.btnLimpiarRecaudaciones1.setActionCommand("btnLimpiarRecaudaciones1");
+        this.vista.btnLimpiarRecaudaciones1.addActionListener(this);
         
         
         
@@ -70,7 +74,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
     
      @Override
     public void actionPerformed(ActionEvent e) {
-        switch (ControladorContabilidad.AccionMVC.valueOf(e.getActionCommand())) {
+        switch (ControladorContabilidadSQL.AccionMVC.valueOf(e.getActionCommand())) {
             case btnInsertarContabilidad:
                 try {
                     String fechaPed= this.vista.txtFechaContabilidad.getText();
@@ -114,9 +118,15 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                 }
                 break; 
                 
-            case btnLimpiar:
+            case btnLimpiarContablidad:
                 
                 LimpiarCotabilidad();
+                
+                break;
+            
+            case btnLimpiarRecaudaciones1:
+                
+                LimpiarRecaudaciones();
                 
                 break;
         }
@@ -130,8 +140,14 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtArticuloContabilidad.setText("");
         this.vista.txtCantidadContabilidad.setText("");
         this.vista.txtPrecioContabilidad.setText("");
+        this.vista.txtCodProd.setText("");
     }
     
+    public void LimpiarRecaudaciones(){
+        this.vista.txtRecaudacionesBar.setText("");
+        this.vista.txtRecaudacionesRecaudacion.setText("");
+        this.vista.txtRecaudacionesFecha.setText("");
+    }
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila = this.vista.jTableContabilidad.getSelectedRow();
