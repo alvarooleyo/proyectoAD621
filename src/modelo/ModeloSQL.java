@@ -535,15 +535,15 @@ public class ModeloSQL extends DatabaseSQL{
     }
 
     
-    public int modificarRecaudacion(String idBar, double cantidadRecaudacion, Date fechaRecaudacion){
+    public int modificarRecaudacion(String licenciaFis, double cantidadRec, String fechaRec){
         int aux=0;
         try {
-            String sql="?= call updateRecaudacion(?,?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call updateRecaudacion(?,?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,idBar);
-            cStmt.setDouble(3, cantidadRecaudacion);
-            cStmt.setDate(4, fechaRecaudacion);
+            cStmt.setString(2,licenciaFis);
+            cStmt.setDouble(3, cantidadRec);
+            cStmt.setString(4, fechaRec);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -608,14 +608,14 @@ public class ModeloSQL extends DatabaseSQL{
         return aux;
     }
     
-    public int eliminarRecaudacion(String idB, Date fechaRec){
+    public int eliminarRecaudacion(String licenciaFis, String fechaRec){
         int aux=0;
         try {
-            String sql="?= call deleteRecaudacion(?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call deleteRecaudacion(?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cStmt.setString(2,idB);
-            cStmt.setDate(3, fechaRec);
+            cStmt.setString(2,licenciaFis);
+            cStmt.setString(3, fechaRec);
             cStmt.execute();
             aux= cStmt.getInt(1);
         } catch (SQLException e) {
@@ -644,7 +644,7 @@ public class ModeloSQL extends DatabaseSQL{
         String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
         path = path.split("build")[0] + "src/informes/reportRecaudaciones.jrxml";
         Map param = new HashMap<String, Object>();
-        param.put("Licencia Fiscal", cif);
+        param.put("recaudacionBar", cif);
         try {
     //Escoge el informe listado Facturas para imprimirlo
             JasperReport contenido = JasperCompileManager.compileReport(path);

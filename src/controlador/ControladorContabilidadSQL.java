@@ -164,16 +164,38 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                 }
                 break;
             case btnInsertarRecaudaciones1: 
+                try {
                     String licenciaFis= this.vista.txtRecaudacionesBar.getText();
                     String fechaRec= this.vista.txtRecaudacionesFecha.getText();
                     double cantidadRec= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
                     this.modelo.insertarRecaudacion(licenciaFis, cantidadRec, fechaRec);
                     this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
                     LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }                    
                 break;
+                
             case btnModificarRecaudaciones1: 
+                try {
+                    String licenciaFis= this.vista.txtRecaudacionesBar.getText();
+                    String fechaRec= this.vista.txtRecaudacionesFecha.getText();
+                    double cantidadRec= Double.parseDouble(this.vista.txtRecaudacionesRecaudacion.getText());
+                    this.modelo.modificarRecaudacion(licenciaFis, cantidadRec, fechaRec);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }
                 break;
+                
             case btnEliminarRecaudaciones1: 
+                try {
+                    String licenciaFis= this.vista.txtRecaudacionesBar.getText();
+                    String fechaRec= this.vista.txtRecaudacionesFecha.getText();
+                    this.modelo.eliminarRecaudacion(licenciaFis, fechaRec);
+                    this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
+                    LimpiarRecaudaciones();
+                } catch (Exception ex) {
+                }
                 break;
             case btnInformeRecaudaciones: 
                 break;
