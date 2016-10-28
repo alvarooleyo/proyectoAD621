@@ -34,7 +34,7 @@ public class Interface extends javax.swing.JFrame {
         btnEmpleadosInicio = new javax.swing.JButton();
         btnInventarioInicio = new javax.swing.JButton();
         btnContabilidadInicio = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         jLayeredPane = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,8 +57,8 @@ public class Interface extends javax.swing.JFrame {
         btnContabilidadInicio.setText("Contabilidad");
         jPanel1.add(btnContabilidadInicio);
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
-        jPanel1.add(btnSalir);
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jPanel1.add(btnHome);
 
         jLayeredPane.setPreferredSize(new java.awt.Dimension(750, 0));
 
@@ -129,8 +129,8 @@ public class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnContabilidadInicio;
     public javax.swing.JButton btnEmpleadosInicio;
+    public javax.swing.JButton btnHome;
     public javax.swing.JButton btnInventarioInicio;
-    public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnTitularInicio;
     public javax.swing.JLayeredPane jLayeredPane;
     private javax.swing.JPanel jPanel1;

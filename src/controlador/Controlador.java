@@ -41,7 +41,8 @@ public class Controlador implements ActionListener, MouseListener {
         btnTitularInicio,
         btnEmpleadosInicio,
         btnInventarioInicio,
-        btnContabilidadInicio
+        btnContabilidadInicio,
+        btnHome
     }
     
     public Controlador(Interface vista) {
@@ -70,6 +71,9 @@ public class Controlador implements ActionListener, MouseListener {
             this.vista.btnInventarioInicio.addActionListener(this);
             this.vista.btnContabilidadInicio.setActionCommand("btnContabilidadInicio");
             this.vista.btnContabilidadInicio.addActionListener(this);
+            
+            this.vista.btnHome.setActionCommand("btnHome");
+            this.vista.btnHome.addActionListener(this);
         
     }
     @Override
@@ -125,6 +129,12 @@ public class Controlador implements ActionListener, MouseListener {
                     this.vistaInventario.setVisible(false);
                     this.vistaContabilidad.setVisible(true);
                 }
+                break;
+                
+            case btnHome:
+                
+                this.vista.setVisible(true);
+                
                 break;
         }
     }
