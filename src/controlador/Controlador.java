@@ -142,9 +142,7 @@ public class Controlador implements ActionListener, MouseListener {
                 
             case btnHome:
                 
-                this.vista.dispose();
-                
-                this.vistaInicio.setVisible(true);
+                System.exit(0);                
                 
                 break;
         }

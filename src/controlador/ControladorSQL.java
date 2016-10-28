@@ -40,7 +40,8 @@ public class ControladorSQL implements ActionListener, MouseListener {
         btnTitularInicio,
         btnEmpleadosInicio,
         btnInventarioInicio,
-        btnContabilidadInicio
+        btnContabilidadInicio,
+        btnHome
     }
     
     public ControladorSQL(Interface vista) {
@@ -50,6 +51,7 @@ public class ControladorSQL implements ActionListener, MouseListener {
     
     public void iniciar() {
         try {
+            
             controladorBar = new ControladorBarSQL(vistaTitular);
             controladorBar.iniciar();
             controladorEmpleados = new ControladorEmpleadosSQL(vistaEmpleados);
@@ -69,6 +71,9 @@ public class ControladorSQL implements ActionListener, MouseListener {
             this.vista.btnInventarioInicio.addActionListener(this);
             this.vista.btnContabilidadInicio.setActionCommand("btnContabilidadInicio");
             this.vista.btnContabilidadInicio.addActionListener(this);
+            
+            this.vista.btnHome.setActionCommand("btnHome");
+            this.vista.btnHome.addActionListener(this);
         
     }
     @Override
@@ -124,6 +129,12 @@ public class ControladorSQL implements ActionListener, MouseListener {
                     this.vistaInventario.setVisible(false);
                     this.vistaContabilidad.setVisible(true);
                 }
+                break;
+                
+            case btnHome:
+                
+                System.exit(0);
+                
                 break;
         }
     }
