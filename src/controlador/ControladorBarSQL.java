@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 import modelo.ModeloSQL;
 import vista.TitularFrame;
 
@@ -152,6 +153,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnInsertarTitular:
                 try {
+                    
                     String dniP =this.vista.txtDNI1Titular.getText();
                     String nombreP= this.vista.txtNombre1Titular.getText();
                     String domicilioP = this.vista.txtDomicilio1Titular.getText();
@@ -159,6 +161,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     this.vista.jTableTitular.setModel(this.modelo.getTablaPersona());
                     this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaPersona());
                     LimpiarTitular();
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -166,6 +169,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnModificarBar:
                 try {
+                    
                     String licenciaF= this.vista.txtLicenciaBar.getText();
                     String nombreB= this.vista.txtNombreBar.getText();
                     String domicilioB= this.vista.txtDomicilioBar.getText();
@@ -176,6 +180,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -183,6 +188,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnModificarTitular:
                 try {
+                    
                     String dniP =this.vista.txtDNI1Titular.getText();
                     String nombreP= this.vista.txtNombre1Titular.getText();
                     String domicilioP= this.vista.txtDomicilio1Titular.getText();   
@@ -190,6 +196,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                     this.vista.jTableTitular.setModel(this.modelo.getTablaPersona());
                     this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaPersona());
                     LimpiarTitular();
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -197,11 +204,13 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnEliminarBar:
                 try {
+                    
                     String licenciaF= this.vista.txtLicenciaBar.getText();
                     this.modelo.eliminarBar(licenciaF);
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -209,11 +218,13 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 
             case btnEliminarTitular:
                 try {
+                    
                     String dniP =this.vista.txtDNI1Titular.getText();                
                     this.modelo.eliminarPersona(dniP);
                     this.vista.jTableTitular.setModel(this.modelo.getTablaPersona());
                     this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaPersona());
                     LimpiarTitular();
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

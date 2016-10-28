@@ -166,11 +166,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                 
             case btnModificarBar:
                 try {
-                    if (this.vista.jTableBar.getSelectedRow() < 0) {
-
-                        JOptionPane.showMessageDialog(null, "Seleccione una fila");
-
-                    } else {
+                    
                     String licenciaFiscal= this.vista.txtLicenciaBar.getText();
                     String nombreBar= this.vista.txtNombreBar.getText();
                     String domicilioBar= this.vista.txtDomicilioBar.getText();
@@ -181,7 +177,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     this.vista.jTableBar.setModel(this.modelo.getTablaBar());
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     LimpiarBar();
-                    }
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -189,11 +185,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                 
             case btnModificarTitular:
                 try {
-                    if (this.vista.jTableTitular.getSelectedRow() < 0) {
-
-                        JOptionPane.showMessageDialog(null, "Seleccione una fila");
-
-                    } else {
+                    
                     String dniTitular =this.vista.txtDNI1Titular.getText();
                     String nombreTitular= this.vista.txtNombre1Titular.getText();
                     String domicilioTitular= this.vista.txtDomicilio1Titular.getText();   
@@ -202,7 +194,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
                     this.vista.txtDNI1Titular.setEnabled(true);
                     LimpiarTitular();
-                    }
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -210,11 +202,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                 
             case btnEliminarBar:
                 try {
-                    if (this.vista.jTableBar.getSelectedRow() < 0) {
-
-                        JOptionPane.showMessageDialog(null, "Seleccione una fila");
-
-                    } else {
+                    
                     String licenciaFiscal= this.vista.txtLicenciaBar.getText();
                     String nombreBar= this.vista.txtNombreBar.getText();
                     String domicilioBar= this.vista.txtDomicilioBar.getText();
@@ -226,7 +214,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
                     this.vista.txtDNI1Titular.setEnabled(false);
                     LimpiarBar();
-                    }
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -234,11 +222,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                 
             case btnEliminarTitular:
                 try {
-                    if (this.vista.jTableTitular.getSelectedRow() < 0) {
-
-                        JOptionPane.showMessageDialog(null, "Seleccione una fila");
-
-                    } else {
+                    
                     String dniTitular =this.vista.txtDNI1Titular.getText();
                     String nombreTitular= this.vista.txtNombre1Titular.getText();
                     String domicilioTitular= this.vista.txtDomicilio1Titular.getText();
@@ -246,7 +230,7 @@ public class ControladorBar implements ActionListener, MouseListener{
                     this.vista.jTableEnlaceTitular.setModel(this.modelo.getTablaTitular());
                     this.modelo.eliminarTitulares(dniTitular);
                     LimpiarTitular();
-                    }
+                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -265,17 +249,13 @@ public class ControladorBar implements ActionListener, MouseListener{
                 break;
             case btnEliminarEnlace:
                 try {
-                    if (this.vista.jTableEnlaceInfo.getSelectedRow() < 0) {
-
-                        JOptionPane.showMessageDialog(null, "Seleccione una fila");
-
-                    } else {
+                    
                     String dniPersona= this.vista.txtTitularEnlace.getText();
                     String bar= this.vista.txtLicenciaEnlace.getText();
                     this.modelo.eliminarTieneTitular(dniPersona, bar);
                     this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
-                    }
+                    
                 } catch (Exception ex) {
                 }
                 break;
