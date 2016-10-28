@@ -573,8 +573,7 @@ public class ModeloSQL extends DatabaseSQL{
     public int eliminarInfoBar(String dniPer, String licenciaFis){
         int aux=0;
         try {
-            String sql="?= call deleteFuncion(?,?)";
-            CallableStatement cStmt= this.getConexion().prepareCall(sql);
+            CallableStatement cStmt= this.getConexion().prepareCall("{?= call deleteFuncion(?,?)}");
             cStmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cStmt.setString(2,dniPer);
             cStmt.setString(3, licenciaFis);

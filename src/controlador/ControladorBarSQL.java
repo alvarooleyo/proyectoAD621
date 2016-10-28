@@ -98,6 +98,13 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
                 jTableEnlaceTitularMouseClicked(evt);
             }
         });
+        
+        this.vista.jTableEnlaceInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInfoBarMouseClicked(evt);
+            }
+        });
+               
     }
     
      @Override
@@ -279,8 +286,10 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         fila2 = this.vista.jTableEnlaceInfo.getSelectedRow();
         String dniTitular = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 0);
         String licenciaFiscal = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 1);
+        String ocupacion = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 2);
         this.vista.txtTitularEnlace.setText(dniTitular);
         this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
+        this.vista.txtOcupacionEnlace.setText(ocupacion);       
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
