@@ -24,6 +24,7 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
     int fila2 = -1;
     int fila3= -1;
     int fila4= -1;
+    int fila5= -1;
     TitularFrame vista= new TitularFrame();
     ModeloSQL modelo= new ModeloSQL();
 
@@ -116,6 +117,12 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         this.vista.jTableEnlaceInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableInfoBarMouseClicked(evt);
+            }
+        });
+        
+        this.vista.jTableInfoBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInfoMouseClicked(evt);
             }
         });
                
@@ -322,6 +329,17 @@ public class ControladorBarSQL implements ActionListener, MouseListener{
         this.vista.txtTitularEnlace.setText(dniTitular);
         this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
         this.vista.txtOcupacionEnlace.setText(ocupacion);       
+    }
+    
+    private void jTableInfoMouseClicked(java.awt.event.MouseEvent evt) {
+
+        fila5 = this.vista.jTableInfoBar.getSelectedRow();
+        String dniTitular = (String) this.vista.jTableInfoBar.getValueAt(fila5, 0);
+        String licenciaFiscal = (String) this.vista.jTableInfoBar.getValueAt(fila5, 1);
+        String ocupacion = (String) this.vista.jTableInfoBar.getValueAt(fila5, 2);
+        this.vista.txtDomicilioInfoBar.setText(ocupacion);
+        this.vista.txtDNIInfoBar.setText(dniTitular);       
+        this.vista.txtLicenciaInfoBar.setText(licenciaFiscal);       
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
