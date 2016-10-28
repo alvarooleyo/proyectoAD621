@@ -43,6 +43,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         try {
 
             this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
+            this.vista.txtNumeroContabilidad.setEditable(false);
             
             
         } catch (Exception e) {
@@ -151,19 +152,14 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila = this.vista.jTableContabilidad.getSelectedRow();
-        //int numeroPedido = (int) this.vista.jTableContabilidad.getValueAt(fila, 0);
-       
-        
-        String auxiliar = String.valueOf(this.vista.jTableContabilidad.getValueAt(fila, 0));
-        int numeroPedido = Integer.parseInt(auxiliar);
-        /*String[] Relleno = this.modelo.rellenarContabilidad(numeroPedido);   
         this.vista.txtNumeroContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 0));
-        this.vista.txtFechaContabilidad.setText(Relleno[0]);
-        this.vista.txtCodigoContabilidad.setText(Relleno[1]);
-        this.vista.txtProveedorContabilidad.setText(Relleno[2]);
-        this.vista.txtArticuloContabilidad.setText(Relleno[3]);
-        this.vista.txtCantidadContabilidad.setText(Relleno[4]);
-        this.vista.txtPrecioContabilidad.setText(Relleno[5]);*/
+        this.vista.txtFechaContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 1));
+        this.vista.txtCodigoContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 2));
+        this.vista.txtProveedorContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 3));
+        this.vista.txtArticuloContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 4));
+        this.vista.txtCantidadContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 5));
+        this.vista.txtPrecioContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 6));
+        this.vista.txtCodProd.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 7));
     }
     
     @Override
