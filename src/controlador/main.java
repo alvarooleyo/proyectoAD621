@@ -5,6 +5,10 @@
  */
 package controlador;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import vista.Inicio;
 import vista.Interface;
 
@@ -14,9 +18,17 @@ import vista.Interface;
  */
 public class main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         
-        new ControladorInicio(new Inicio()).iniciar();
-        //new Controlador(new Interface()).iniciar();
+        try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+           
+            //new Controlador(new Interface()).iniciar();
+        } catch (ClassNotFoundException ex) {
+            
+        }
+           
+        
+         new ControladorInicio(new Inicio()).iniciar();
     }
 }

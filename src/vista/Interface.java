@@ -34,39 +34,31 @@ public class Interface extends javax.swing.JFrame {
         btnEmpleadosInicio = new javax.swing.JButton();
         btnInventarioInicio = new javax.swing.JButton();
         btnContabilidadInicio = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLayeredPane = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jPanel1.setLayout(new java.awt.GridLayout(5, 1));
+
         btnTitularInicio.setText("Bar/ Titulares");
+        jPanel1.add(btnTitularInicio);
 
+        btnEmpleadosInicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEmpleadosInicio.setText("Empleados");
+        jPanel1.add(btnEmpleadosInicio);
 
+        btnInventarioInicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnInventarioInicio.setText("Inventario");
+        jPanel1.add(btnInventarioInicio);
 
+        btnContabilidadInicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnContabilidadInicio.setText("Contabilidad");
+        jPanel1.add(btnContabilidadInicio);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnTitularInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEmpleadosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnInventarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnContabilidadInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnTitularInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnEmpleadosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnInventarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnContabilidadInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jPanel1.add(btnSalir);
 
         jLayeredPane.setPreferredSize(new java.awt.Dimension(750, 0));
 
@@ -74,7 +66,7 @@ public class Interface extends javax.swing.JFrame {
         jLayeredPane.setLayout(jLayeredPaneLayout);
         jLayeredPaneLayout.setHorizontalGroup(
             jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGap(0, 779, Short.MAX_VALUE)
         );
         jLayeredPaneLayout.setVerticalGroup(
             jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,12 +80,12 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
 
         pack();
@@ -138,6 +130,7 @@ public class Interface extends javax.swing.JFrame {
     public javax.swing.JButton btnContabilidadInicio;
     public javax.swing.JButton btnEmpleadosInicio;
     public javax.swing.JButton btnInventarioInicio;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnTitularInicio;
     public javax.swing.JLayeredPane jLayeredPane;
     private javax.swing.JPanel jPanel1;
