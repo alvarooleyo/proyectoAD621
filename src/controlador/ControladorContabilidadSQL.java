@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.ModeloSQL;
 import vista.ContabilidadFrame;
 
@@ -32,7 +34,8 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         btnModificarContabilidad,
         btnEliminarContabilidad,
         btnLimpiarContablidad,
-        btnLimpiarRecaudaciones1
+        btnLimpiarRecaudaciones1,
+        btnGenerarInformeRecaudaciones
     }
     
     public ControladorContabilidadSQL(ContabilidadFrame vista){
@@ -63,6 +66,8 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.btnLimpiarRecaudaciones1.setActionCommand("btnLimpiarRecaudaciones1");
         this.vista.btnLimpiarRecaudaciones1.addActionListener(this);
         
+        this.vista.btnInformeRecaudaciones.setActionCommand("btnGenerarInformeRecaudaciones");
+        this.vista.btnInformeRecaudaciones.addActionListener(this);
         
         
         //----------------------Funciones de click de ratón sobre tablas---------------------
@@ -132,8 +137,21 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                 LimpiarRecaudaciones();
                 
                 break;
+            
+            case btnGenerarInformeRecaudaciones:
+                
+                DefaultTableModel model = (DefaultTableModel) this.vista.jTableRecaudaciones1.getModel();
+                int a = this.vista.jTableRecaudaciones1.getSelectedRow();
+                if (a < 0) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila de la tabla");
+                } else {
+                    String cif = this.vista.jTableRecaudaciones1.getValueAt(this.vista.jTableRecaudaciones1.getSelectedRow(), 0).toString();
+                    this.modelo.generarInformeRecaudaciones(cif);
+                }
+                break;
         }
-    }
+        }
+    
     
     public void LimpiarCotabilidad(){
         this.vista.txtNumeroContabilidad.setText("");

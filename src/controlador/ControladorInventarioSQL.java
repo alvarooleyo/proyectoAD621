@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.ModeloSQL;
 import vista.InventarioFrame;
 
@@ -32,7 +34,8 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
         btnEliminarProducto,
         btnInsertarEnlace,
         btnEliminarEnlace,
-        btnLimpiarInventario
+        btnLimpiarInventario,
+        btnGenerarInformeInventario
     }
     
     public ControladorInventarioSQL(InventarioFrame vista){
@@ -55,6 +58,9 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
             
             this.vista.btnLimpiarInventario.setActionCommand("btnLimpiarInventario");
             this.vista.btnLimpiarInventario.addActionListener(this);
+            
+            this.vista.btnInformeStock.setActionCommand("btnGenerarInformeInventario");
+            this.vista.btnInformeStock.addActionListener(this);
             
             //----------------------Funciones de click de ratón sobre tablas---------------------
         this.vista.jTableInventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,6 +117,18 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
                 
                 LimpiarInventario();
                 
+                break;
+            
+            case btnGenerarInformeInventario:
+                
+                DefaultTableModel model = (DefaultTableModel) this.vista.jTableInventario.getModel();
+                int a = this.vista.jTableInventario.getSelectedRow();
+                if (a < 0) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila de la tabla");
+                } else {
+                    String cif = this.vista.jTableInventario.getValueAt(this.vista.jTableInventario.getSelectedRow(), 0).toString();
+                    this.modelo.generarInformeRecaudaciones(cif);
+                }
                 break;
                 
     }
