@@ -109,18 +109,18 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
         this.vista.txtCodigoProducto.setText("");
         this.vista.txtNombreProducto.setText("");
         this.vista.txtPrecioProducto.setText("");
+        this.vista.txtCodigoProducto.setEnabled(true);
     }
     
     //----------------------Permite la selección de elementos dentro de tablas---------------------------
     private void jTableInventarioMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila = this.vista.jTableInventario.getSelectedRow();
-        String codigoProducto = (String) this.vista.jTableInventario.getValueAt(fila, 0);
-        /*String[] Relleno = this.modelo.rellenarInventario(codigoProducto);
-        this.vista.txtCodigoProducto.setText(codigoProducto);
-        this.vista.txtNombreProducto.setText(Relleno[0]);
-        this.vista.txtCantidadProducto.setText(Relleno[1]);
-        this.vista.txtPrecioProducto.setText(Relleno[2]);*/
+        this.vista.txtCodigoProducto.setText((String)this.vista.jTableInventario.getValueAt(fila, 0));
+        this.vista.txtNombreProducto.setText((String)this.vista.jTableInventario.getValueAt(fila, 1));
+        this.vista.txtCantidadProducto.setText((String)this.vista.jTableInventario.getValueAt(fila, 2));
+        this.vista.txtPrecioProducto.setText((String)this.vista.jTableInventario.getValueAt(fila, 3));
+        this.vista.txtCodigoProducto.setEnabled(false);
     }
     
     @Override
