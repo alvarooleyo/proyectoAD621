@@ -44,10 +44,13 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
         try {
 
             this.vista.jTableEmpleados.setModel(this.modelo.getTablaPersona());
-            this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoEmpleados());
+            this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
             this.vista.jTableEnlaceEmpleados.setModel(this.modelo.getTablaPersona());
             this.vista.jTableEnlaceBar.setModel(this.modelo.getTablaBar());
-            //this.vista.jTableInfoEmpleados.setModel(this.modelo.getTablaInfoEmpleados());
+            this.vista.jTableInfoEmpleados.setModel(this.modelo.getTablaInfoBar());
+            this.vista.txtEmpleadoEnlace.setEnabled(false);
+            this.vista.txtLicenciaEnlace.setEnabled(false);
+            
             
         } catch (Exception e) {
         }
@@ -87,8 +90,20 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
                 jTableEnlaceEmpleadosMouseClicked(evt);
             }
         });
-    }
-    
+        
+        this.vista.jTableEnlaceInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEnlaceInfoMouseClicked(evt);
+            }
+        });      
+        
+        this.vista.jTableInfoEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInfoEmpleadosMouseClicked(evt);
+            }
+        });  
+        
+    }   
      @Override
     public void actionPerformed(ActionEvent e) {
         switch (ControladorEmpleadosSQL.AccionMVC.valueOf(e.getActionCommand())) {
@@ -138,7 +153,7 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
                     String LicenciaFis= this.vista.txtLicenciaEnlace.getText();
                     boolean esTit = false;
                     this.modelo.insertarInfoBar(dniPer, LicenciaFis, esTit, funcionTra);
-                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoEmpleados());
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
                     
                 } catch (Exception ex) {
@@ -150,7 +165,7 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
                     String dniPer= this.vista.txtEmpleadoEnlace.getText();
                     String licenciaFis= this.vista.txtLicenciaEnlace.getText();
                     this.modelo.eliminarInfoBar(dniPer, licenciaFis);
-                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoEmpleados());
+                    this.vista.jTableEnlaceInfo.setModel(this.modelo.getTablaInfoBar());
                     LimpiarEnlace();
                 } catch (Exception ex) {
                 }
@@ -167,8 +182,7 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
                 LimpiarEnlace();
                 
                 break;
-                
-            
+                         
         }
     }
 
@@ -176,6 +190,7 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
         this.vista.txtDNIEmpleados.setText("");
         this.vista.txtNombreEmpleados.setText("");
         this.vista.txtDomicilioEmpleados.setText("");
+        this.vista.txtDNIEmpleados.setEnabled(true);
     }
     
     public void LimpiarEnlace(){
@@ -189,10 +204,12 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
 
         fila = this.vista.jTableEmpleados.getSelectedRow();
         String dniEmpleado = (String) this.vista.jTableEmpleados.getValueAt(fila, 0);
-        /*String[] Relleno = this.modelo.rellenarEmpleados(dniEmpleado);
+        String nombreEmpleados = (String) this.vista.jTableEmpleados.getValueAt(fila, 1);
+        String domicilioEmpleados = (String) this.vista.jTableEmpleados.getValueAt(fila, 2);
         this.vista.txtDNIEmpleados.setText(dniEmpleado);
-        this.vista.txtNombreEmpleados.setText(Relleno[0]);
-        this.vista.txtDomicilioEmpleados.setText(Relleno[1]);*/
+        this.vista.txtDNIEmpleados.setEnabled(false);
+        this.vista.txtNombreEmpleados.setText(nombreEmpleados);
+        this.vista.txtDomicilioEmpleados.setText(domicilioEmpleados);
     }
     
     private void jTableEnlaceBarMouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,6 +217,7 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
         fila3 = this.vista.jTableEnlaceBar.getSelectedRow();
         String licenciaFiscal = (String) this.vista.jTableEnlaceBar.getValueAt(fila3, 0);
         this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
+        
     }
     
     private void jTableEnlaceEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {
@@ -207,6 +225,31 @@ public class ControladorEmpleadosSQL implements ActionListener, MouseListener{
         fila4 = this.vista.jTableEnlaceEmpleados.getSelectedRow();
         String dniPersona = (String) this.vista.jTableEnlaceEmpleados.getValueAt(fila4, 0);
         this.vista.txtEmpleadoEnlace.setText(dniPersona);
+        
+    }
+    
+    private void jTableEnlaceInfoMouseClicked(java.awt.event.MouseEvent evt) {
+        
+        fila2 = this.vista.jTableEnlaceInfo.getSelectedRow();
+        String dniPersona = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 0);
+        String licenciaFiscal = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 1);
+        String ocupacion = (String) this.vista.jTableEnlaceInfo.getValueAt(fila2, 2);
+        this.vista.txtEmpleadoEnlace.setText(dniPersona);
+        this.vista.txtOcupacionEnlace.setText(ocupacion);
+        this.vista.txtLicenciaEnlace.setText(licenciaFiscal);
+        
+    }
+    
+    private void jTableInfoEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {
+        
+        fila1 = this.vista.jTableInfoEmpleados.getSelectedRow();
+        String dniPersona = (String) this.vista.jTableInfoEmpleados.getValueAt(fila1, 0);
+        String licenciaFiscal = (String) this.vista.jTableInfoEmpleados.getValueAt(fila1, 1);
+        String ocupacion = (String) this.vista.jTableInfoEmpleados.getValueAt(fila1, 3);
+        this.vista.txtInfoDNI.setText(dniPersona);
+        this.vista.txtInfoEstablecimiento.setText(ocupacion);
+        this.vista.txtInfoOcupacion.setText(licenciaFiscal);
+        
     }
     
     @Override

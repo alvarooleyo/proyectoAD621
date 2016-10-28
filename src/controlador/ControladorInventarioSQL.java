@@ -87,7 +87,8 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
                     String nombreProd= this.vista.txtNombreProducto.getText();
                     int cantidadProd= Integer.parseInt(this.vista.txtCantidadProducto.getText());
                     Double precioProd= Double.parseDouble(this.vista.txtPrecioProducto.getText());
-                    this.modelo.modificarProducto(nombreProd, cantidadProd, precioProd);
+                    int codProd=Integer.parseInt(this.vista.txtCodigoProducto.getText());
+                    this.modelo.modificarProducto2(codProd, nombreProd, cantidadProd, precioProd);
                     this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
                     LimpiarInventario();
                 } catch (Exception ex) {
@@ -97,8 +98,8 @@ public class ControladorInventarioSQL implements ActionListener, MouseListener{
                 
             case btnEliminarProducto:
                 try {
-                    String codProducto= this.vista.txtCodigoProducto.getText();
-                    this.modelo.eliminarProducto(codProducto);
+                    int codProd= Integer.parseInt(this.vista.txtCodigoProducto.getText());
+                    this.modelo.eliminarProducto(codProd);
                     this.vista.jTableInventario.setModel(this.modelo.getTablaProductos());
                     LimpiarInventario();
                 } catch (Exception ex) {
