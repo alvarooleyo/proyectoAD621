@@ -89,7 +89,13 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableContabilidadMouseClicked(evt);
             }
-        });               
+        });
+        
+        this.vista.jTableRecaudaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableRecaudacionesMouseClicked(evt);
+            }
+        });    
     }
     
      @Override
@@ -234,6 +240,13 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.txtCodigoContabilidad.setEnabled(false);
     }
     
+     private void jTableRecaudacionesMouseClicked(java.awt.event.MouseEvent evt) {
+        fila2 = this.vista.jTableRecaudaciones1.getSelectedRow();
+        this.vista.txtRecaudacionesBar.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 0));
+        this.vista.txtRecaudacionesRecaudacion.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 1));
+        this.vista.txtRecaudacionesFecha.setText((String)this.vista.jTableRecaudaciones1.getValueAt(fila2, 2));
+     }
+     
     @Override
     public void mouseClicked(MouseEvent e) {}
 
