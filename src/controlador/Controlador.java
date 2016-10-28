@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import modelo.Modelo;
 import vista.ContabilidadFrame;
 import vista.EmpleadosFrame;
+import vista.Inicio;
 import vista.Interface;
 import vista.InventarioFrame;
 import vista.TitularFrame;
@@ -22,6 +23,8 @@ import vista.TitularFrame;
  */
 public class Controlador implements ActionListener, MouseListener {
     
+    Inicio vistaInicio;
+    
     Interface vista;
     Modelo modelo= new Modelo();
     boolean incluidoTitular= false, incluidoEmpleqados= false, incluidoInventario=false, incluidoContabilidad=false;
@@ -30,6 +33,8 @@ public class Controlador implements ActionListener, MouseListener {
     InventarioFrame vistaInventario= new InventarioFrame();
     ContabilidadFrame vistaContabilidad= new ContabilidadFrame();
     
+    
+    ControladorInicio controladorInicio;
     ControladorBar controladorBar;
     ControladorContabilidad controladorContabilidad;
     ControladorEmpleados controladorEmpleados;
@@ -51,7 +56,11 @@ public class Controlador implements ActionListener, MouseListener {
     }
     
     public void iniciar() {
+        
+       
+        
         try {
+            controladorInicio = new ControladorInicio(vistaInicio);
             controladorBar = new ControladorBar(vistaTitular);
             controladorBar.iniciar();
             controladorEmpleados = new ControladorEmpleados(vistaEmpleados);
@@ -133,7 +142,9 @@ public class Controlador implements ActionListener, MouseListener {
                 
             case btnHome:
                 
-                this.vista.setVisible(true);
+                this.vista.dispose();
+                
+                this.vistaInicio.setVisible(true);
                 
                 break;
         }
