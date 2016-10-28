@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ModeloSQL;
@@ -35,7 +34,11 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         btnEliminarContabilidad,
         btnLimpiarContablidad,
         btnLimpiarRecaudaciones1,
-        btnGenerarInformeRecaudaciones
+        btnGenerarInformeRecaudaciones,
+        btnInsertarRecaudaciones1,
+        btnModificarRecaudaciones1,
+        btnEliminarRecaudaciones1,
+        btnInformeRecaudaciones
     }
     
     public ControladorContabilidadSQL(ContabilidadFrame vista){
@@ -47,6 +50,7 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
 
             this.vista.jTableContabilidad.setModel(this.modelo.getTablaContabilidad());
             this.vista.txtNumeroContabilidad.setEditable(false);
+            this.vista.jTableRecaudaciones1.setModel(this.modelo.getTablaRecaudaciones());
             
             
         } catch (Exception e) {
@@ -66,7 +70,16 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
         this.vista.btnLimpiarRecaudaciones1.setActionCommand("btnLimpiarRecaudaciones1");
         this.vista.btnLimpiarRecaudaciones1.addActionListener(this);
         
-        this.vista.btnInformeRecaudaciones.setActionCommand("btnGenerarInformeRecaudaciones");
+        this.vista.btnInsertarRecaudaciones1.setActionCommand("btnInsertarRecaudaciones1");
+        this.vista.btnInsertarRecaudaciones1.addActionListener(this);
+        
+        this.vista.btnModificarRecaudaciones1.setActionCommand("btnModificarRecaudaciones1");
+        this.vista.btnModificarRecaudaciones1.addActionListener(this);
+        
+        this.vista.btnEliminarRecaudaciones1.setActionCommand("btnEliminarRecaudaciones1");
+        this.vista.btnEliminarRecaudaciones1.addActionListener(this);
+        
+        this.vista.btnInformeRecaudaciones.setActionCommand("btnInformeRecaudaciones");
         this.vista.btnInformeRecaudaciones.addActionListener(this);
         
         
@@ -148,6 +161,14 @@ public class ControladorContabilidadSQL implements ActionListener, MouseListener
                     String cif = this.vista.jTableRecaudaciones1.getValueAt(this.vista.jTableRecaudaciones1.getSelectedRow(), 0).toString();
                     this.modelo.generarInformeRecaudaciones(cif);
                 }
+                break;
+            case btnInsertarRecaudaciones1: 
+                break;
+            case btnModificarRecaudaciones1: 
+                break;
+            case btnEliminarRecaudaciones1: 
+                break;
+            case btnInformeRecaudaciones: 
                 break;
         }
         }

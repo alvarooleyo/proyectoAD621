@@ -552,7 +552,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnLimpiarRecaudaciones1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Limpiar"/>
+                    <Property name="text" type="java.lang.String" value="Limpiar Recaudaci&#xf3;n"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

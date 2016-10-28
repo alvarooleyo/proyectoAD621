@@ -267,7 +267,7 @@ public class ContabilidadFrame extends javax.swing.JInternalFrame {
 
         btnEliminarRecaudaciones1.setText("Eliminar");
 
-        btnLimpiarRecaudaciones1.setText("Limpiar");
+        btnLimpiarRecaudaciones1.setText("Limpiar Recaudación");
 
         btnInformeRecaudaciones.setText("Informe Recaudaciones");
 
