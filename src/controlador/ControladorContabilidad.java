@@ -146,26 +146,17 @@ public class ControladorContabilidad implements ActionListener, MouseListener{
         this.vista.txtRecaudacionesBar.setText("");
         this.vista.txtRecaudacionesRecaudacion.setText("");
         this.vista.txtRecaudacionesFecha.setText("");
-        
+        this.vista.txtCodigoContabilidad.setEnabled(true);
     }
     
     private void jTableContabilidadMouseClicked(java.awt.event.MouseEvent evt) {
 
         fila = this.vista.jTableContabilidad.getSelectedRow();
-        //int numeroPedido = (int) this.vista.jTableContabilidad.getValueAt(fila, 0);
-       
-        
+
         String auxiliar = String.valueOf(this.vista.jTableContabilidad.getValueAt(fila, 0));
-        int numeroPedido = Integer.parseInt(auxiliar);
-        
-        System.out.println(numeroPedido);
-        
+        int numeroPedido = Integer.parseInt(auxiliar);      
+        this.vista.txtCodigoContabilidad.setEnabled(false);
         String[] Relleno = this.modelo.rellenarContabilidad(numeroPedido);
-        
-        
-        
-        
-        
         this.vista.txtNumeroContabilidad.setText((String)this.vista.jTableContabilidad.getValueAt(fila, 0));
         this.vista.txtFechaContabilidad.setText(Relleno[0]);
         this.vista.txtCodigoContabilidad.setText(Relleno[1]);

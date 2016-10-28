@@ -120,6 +120,7 @@ public class ControladorInventario implements ActionListener, MouseListener{
         this.vista.txtCodigoProducto.setText("");
         this.vista.txtNombreProducto.setText("");
         this.vista.txtPrecioProducto.setText("");
+        this.vista.txtCodigoProducto.setEnabled(true);
     }
     
     //----------------------Permite la selección de elementos dentro de tablas---------------------------
@@ -132,6 +133,7 @@ public class ControladorInventario implements ActionListener, MouseListener{
         this.vista.txtNombreProducto.setText(Relleno[0]);
         this.vista.txtCantidadProducto.setText(Relleno[1]);
         this.vista.txtPrecioProducto.setText(Relleno[2]);
+        this.vista.txtCodigoProducto.setEnabled(false);
     }
     
     @Override
